@@ -24,8 +24,8 @@ export const PORTFOLIO_CONFIG = {
             icon: "fa-business-time", 
             target: 1, 
             prefix: "", 
-            suffix: "+", 
-            label: { id: "Tahun Pengalaman", en: "Years of Experience" } 
+            suffix: "+ Tahun", 
+            label: { id: "Pengalaman Accounting & Finance", en: "Accounting & Finance Experience" } 
         },
         { 
             icon: "fa-vault", 
@@ -39,14 +39,14 @@ export const PORTFOLIO_CONFIG = {
             target: 18, 
             prefix: "", 
             suffix: " Miliar", 
-            label: { id: "Arus Kas Bulanan", en: "Monthly Cash Flow" } 
+            label: { id: "Arus Kas Bulanan Dikelola", en: "Monthly Cash Flow Managed" } 
         },
         { 
             icon: "fa-bezier-curve", 
             target: 500, 
             prefix: "", 
             suffix: "K+", 
-            label: { id: "Data Penjualan Dianalisis", en: "Sales Records Analyzed" } 
+            label: { id: "Data Transaksi Accounting & Finance Dianalisis", en: "Accounting & Finance Records Analyzed" } 
         }
     ],
     skills: [
