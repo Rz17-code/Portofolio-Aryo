@@ -179,11 +179,39 @@ export const PORTFOLIO_CONFIG = {
                 { id: "Mendorong peningkatan penjualan rata-rata 8% per Customer Service dengan memantau target harian.", en: "Supported an average 8% sales increase per CS representative by monitoring daily targets." },
                 { id: "Memvisualisasikan tren penjualan harian & bulanan untuk 10+ produk Dexa Medica.", en: "Visualized daily & monthly sales trends for 10+ Dexa Medica products." }
             ],
-            tools: ["Google Looker Studio", "Microsoft Excel (Advanced Formulas)", "SQL / Large Dataset Processing"],
+        },
+        {
+            id: "consolidated-accounting-system",
+            icon: "fa-calculator",
+            title: {
+                id: "Consolidated Web Accounting System (Aplikasi Web Akuntansi)",
+                en: "Consolidated Web Accounting System"
+            },
+            category: { id: "Proyek Software Akuntansi", en: "Accounting Web App" },
+            metric: { id: "Multi-Entity • Automated P&L & Balance Sheet", en: "Multi-Entity • Automated P&L & Balance Sheet" },
+            description: {
+                id: "Merancang dan merakit aplikasi web sistem akuntansi konsolidasi untuk memproses penjurnalan otomatis, buku besar (ledger), neraca saldo, serta laporan laba rugi & neraca terstruktur.",
+                en: "Designed and built a consolidated web accounting system application to process automated journal entries, general ledgers, trial balances, and financial statements."
+            },
+            tags: ["Accounting System", "Next.js / React", "General Ledger", "Financial Statements", "PSAK / GAAP"],
+            problem: {
+                id: "Pencatatan akuntansi manual rentan risiko human error dalam penjurnalan, pembukuan ledger, dan penggabungan laporan keuangan antar entitas usaha.",
+                en: "Manual accounting processes carry high human error risk in general journal entry posting, ledger reconciliation, and inter-unit financial statement consolidation."
+            },
+            solution: {
+                id: "Mengembangkan aplikasi web sistem akuntansi dengan validasi debit-kredit otomatis, kalkulasi neraca saldo real-time, dan penyusunan Laporan Laba Rugi & Neraca Konsolidasi terpusat.",
+                en: "Developed a web accounting application with validated debit-credit rules, automated balance sheet calculation, and web-based Consolidated Income Statement generation."
+            },
+            impact: [
+                { id: "Mengotomatisasi posting jurnal ke buku besar & laporan keuangan secara instan dengan tingkat akurasi 100%.", en: "Automated journal posting to general ledger & financial statements instantly with 100% accuracy." },
+                { id: "Mempercepat proses penutupan buku bulanan (monthly closing) hingga 80%.", en: "Accelerated monthly closing procedures by up to 80%." },
+                { id: "Menyediakan audit trail transaksi yang transparan dan siap untuk audit internal.", en: "Provided transparent transaction audit trails ready for internal audits." }
+            ],
+            tools: ["Next.js / React", "JavaScript", "Custom CSS", "Financial Database Architecture"],
             documentation: {
                 image: "/projects/cashflow-dashboard-demo.png",
-                alt: { id: "Dashboard Analisis Penjualan dan Logistik", en: "Sales and Logistics Analytics Dashboard" },
-                caption: { id: "Dokumentasi simulasi visualisasi tren penjualan dan efisiensi pengiriman ekspedisi.", en: "Documentation simulation of sales trend visualization and logistics shipping efficiency." }
+                alt: { id: "Tampilan Sistem Akuntansi Web Konsolidasi", en: "Consolidated Web Accounting System UI" },
+                caption: { id: "Dokumentasi antarmuka aplikasi web akuntansi konsolidasi dengan modul jurnal dan laporan keuangan.", en: "Documentation interface of consolidated web accounting application with journal and financial statement modules." }
             }
         }
     ],
