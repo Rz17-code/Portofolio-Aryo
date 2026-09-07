@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rozindar Haryo Salam | Accounting & Finance Portfolio</title>
+    <!-- Meta Descriptions & SEO -->
+    <meta name="description" content="Professional portfolio of Rozindar Haryo Salam, Accounting & Finance Specialist. Interactive dashboards, budgeting scenarios, and compliance details.">
+    <meta name="keywords" content="Rozindar Haryo Salam, Finance Portfolio, Accountant Portfolio, Financial Analyst, Budget Forecasting, Financial Modeling, Interactive Charts">
+    
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Canvas for interactive light layout background -->
+    <canvas id="canvas-bg"></canvas>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo" id="logo-link">
+                <!-- Injected dynamically -->
+            </a>
+            
+            <!-- Minimalist Nav Menu -->
+            <nav class="nav-menu">
+                <a href="#hero" class="nav-link active" id="link-hero"></a>
+                <a href="#expertise" class="nav-link" id="link-expertise"></a>
+                <a href="#dashboard" class="nav-link" id="link-dashboard"></a>
+                <a href="#projects" class="nav-link" id="link-projects"></a>
+                <a href="#education" class="nav-link" id="link-education"></a>
+                <a href="#journey" class="nav-link" id="link-journey"></a>
+                <a href="#contact" class="nav-link" id="link-contact"></a>
+            </nav>
+
+            <!-- Language Switcher, Theme Switcher & Menu Toggle -->
+            <div class="header-actions-wrap">
+                <div class="lang-switcher">
+                    <button id="btn-lang-id" class="lang-btn active">ID</button>
+                    <span class="lang-separator">|</span>
+                    <button id="btn-lang-en" class="lang-btn">EN</button>
+                </div>
+                <button id="btn-theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a href="#" id="btn-download-cv-header" class="btn btn-secondary btn-sm cv-header-btn" download>
+                    <i class="fa-solid fa-download icon-left"></i><span id="label-cv-header"></span>
+                </a>
+                <div class="menu-toggle" id="mobile-menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <div class="badge" id="hero-badge">
+                    <span class="pulse-dot"></span> <span id="hero-badge-text"></span>
+                </div>
+                <h1 class="hero-title" id="main-hero-title">
+                    <!-- Injected dynamically -->
+                </h1>
+                <p class="hero-subtitle" id="hero-lead-text">
+                    <!-- Injected dynamically -->
+                </p>
+                <div class="hero-actions">
+                    <a href="#dashboard" class="btn btn-primary" id="btn-explore-dashboard">
+                        <!-- Text injected dynamically -->
+                    </a>
+                    <a href="#" id="btn-download-cv-hero" class="btn btn-secondary" download>
+                        <!-- Text injected dynamically -->
+                    </a>
+                    <a href="#contact" class="btn btn-secondary" id="btn-get-in-touch">
+                        <!-- Text injected dynamically -->
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid" id="stats-container"></div>
+        </section>
+
+        <!-- Expertise Section -->
+        <section id="expertise" class="section-padding">
+            <div class="section-header">
+                <span class="section-subtitle" id="label-sub-expertise"></span>
+                <h2 class="section-title" id="label-title-expertise"></h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <!-- Injected dynamically -->
+            <div class="grid-expertise" id="expertise-container"></div>
+        </section>
+
+        <!-- Interactive Dashboard Demo Section -->
+        <section id="dashboard" class="section-padding dashboard-bg-wrap">
+            <div class="section-header">
+                <span class="section-subtitle" id="label-sub-demo"></span>
+                <h2 class="section-title" id="label-title-demo"></h2>
+                <p class="section-desc" id="label-desc-demo"></p>
+                <div class="section-divider"></div>
+            </div>
+
+            <!-- The Dashboard App -->
+            <div class="dashboard-container glass-card">
+                <div class="dashboard-sidebar">
+                    <div class="dash-profile">
+                        <i class="fa-solid fa-landmark dash-profile-icon"></i>
+                        <div>
+                            <h4 id="label-sim-header"></h4>
+                            <p class="text-muted" id="label-sim-sub"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="range-revenue" id="label-sim-revenue"></label>
+                        <div class="range-display">
+                            <input type="range" id="range-revenue" min="500000" max="10000000" step="250000" value="3000000">
+                            <span id="val-revenue">$3.0M</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="range-growth" id="label-sim-growth"></label>
+                        <div class="range-display">
+                            <input type="range" id="range-growth" min="-5" max="30" step="1" value="10">
+                            <span id="val-growth">10%</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="range-opex" id="label-sim-opex"></label>
+                        <div class="range-display">
+                            <input type="range" id="range-opex" min="10" max="60" step="2" value="20">
+                            <span id="val-opex">20%</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm full-width" id="btn-reset-simulator">
+                        <i class="fa-solid fa-rotate-left icon-left"></i> <span id="label-sim-reset"></span>
+                    </button>
+                </div>
+
+                <div class="dashboard-main">
+                    <!-- Dashboard Nav -->
+                    <div class="dash-tabs">
+                        <button class="dash-tab active" data-tab="tab-growth" id="tab-btn-growth">
+                            <i class="fa-solid fa-chart-line icon-left"></i> <span id="label-tab-forecast"></span>
+                        </button>
+                        <button class="dash-tab" data-tab="tab-structure" id="tab-btn-structure">
+                            <i class="fa-solid fa-chart-pie icon-left"></i> <span id="label-tab-capital"></span>
+                        </button>
+                        <button class="dash-tab" data-tab="tab-ratios" id="tab-btn-ratios">
+                            <i class="fa-solid fa-calculator icon-left"></i> <span id="label-tab-ratios"></span>
+                        </button>
+                    </div>
+
+                    <!-- Tab Contents -->
+                    <div class="tab-content active" id="tab-growth">
+                        <div class="tab-header">
+                            <div>
+                                <h3 id="label-chart-title"></h3>
+                                <p class="text-muted" id="label-chart-desc"></p>
+                            </div>
+                            <div class="chart-legend">
+                                <span class="legend-item"><span class="legend-dot revenue-dot"></span> <span id="label-legend-rev"></span></span>
+                                <span class="legend-item"><span class="legend-dot net-dot"></span> <span id="label-legend-net"></span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <svg class="chart-svg" id="forecast-chart" viewBox="0 0 600 300">
+                                <!-- Dynamic SVG lines, points, and grids go here -->
+                            </svg>
+                            <!-- Interactive Chart Tooltip -->
+                            <div class="chart-tooltip" id="chart-tooltip"></div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="tab-structure">
+                        <div class="tab-header">
+                            <div>
+                                <h3 id="label-capital-title"></h3>
+                                <p class="text-muted" id="label-capital-desc"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="structure-grid">
+                            <div class="chart-pie-wrapper">
+                                <svg class="pie-svg" id="allocation-pie" viewBox="0 0 200 200">
+                                    <!-- Dynamic SVG Donut Chart injected by app.js -->
+                                </svg>
+                                <div class="pie-center-label">
+                                    <span id="pie-center-value">20%</span>
+                                    <span class="text-muted" style="font-size: 0.65rem; font-weight: 500;" id="label-donut-operating"></span>
+                                </div>
+                            </div>
+                            <div class="pie-labels" id="pie-labels-list">
+                                <!-- Dynamic labels loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="tab-ratios">
+                        <div class="tab-header">
+                            <div>
+                                <h3 id="label-ratios-title"></h3>
+                                <p class="text-muted" id="label-ratios-desc"></p>
+                            </div>
+                        </div>
+
+                        <div class="ratios-calculator-layout">
+                            <!-- Input Fields -->
+                            <div class="ratios-inputs">
+                                <div class="ratio-input-group">
+                                    <label for="calc-current-assets" id="label-calc-ca"></label>
+                                    <input type="number" id="calc-current-assets" value="1500000" step="50000">
+                                </div>
+                                <div class="ratio-input-group">
+                                    <label for="calc-current-liabilities" id="label-calc-cl"></label>
+                                    <input type="number" id="calc-current-liabilities" value="750000" step="50000">
+                                </div>
+                                <div class="ratio-input-group">
+                                    <label for="calc-net-income" id="label-calc-ni"></label>
+                                    <input type="number" id="calc-net-income" value="300000" step="20000">
+                                </div>
+                                <div class="ratio-input-group">
+                                    <label for="calc-revenue" id="label-calc-rev"></label>
+                                    <input type="number" id="calc-revenue" value="2000000" step="100000">
+                                </div>
+                            </div>
+
+                            <!-- Output Metrics -->
+                            <div class="ratios-outputs">
+                                <div class="ratio-card">
+                                    <h4 id="label-ratio-current"></h4>
+                                    <div class="ratio-value" id="val-ratio-current">2.00x</div>
+                                    <p class="ratio-interpretation" id="desc-ratio-current"></p>
+                                </div>
+                                <div class="ratio-card">
+                                    <h4 id="label-ratio-profit"></h4>
+                                    <div class="ratio-value" id="val-ratio-profit">15.0%</div>
+                                    <p class="ratio-interpretation" id="desc-ratio-profit"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section-padding">
+            <div class="section-header">
+                <span class="section-subtitle" id="label-sub-projects"></span>
+                <h2 class="section-title" id="label-title-projects"></h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <!-- Injected dynamically -->
+            <div class="grid-projects" id="projects-container"></div>
+        </section>
+
+        <!-- Education & Certifications Section -->
+        <section id="education" class="section-padding">
+            <div class="section-header">
+                <span class="section-subtitle" id="label-sub-education"></span>
+                <h2 class="section-title" id="label-title-education"></h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="education-layout">
+                <!-- Academic Education -->
+                <div class="education-column">
+                    <div class="edu-group-title"><i class="fa-solid fa-graduation-cap icon-left"></i><span id="label-edu-academic"></span></div>
+                    <div id="education-academic-container"></div>
+                </div>
+
+                <!-- Professional Certifications -->
+                <div class="education-column">
+                    <div class="edu-group-title"><i class="fa-solid fa-award icon-left"></i><span id="label-edu-certs"></span></div>
+                    <div id="education-certs-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Journey / Timeline Section -->
+        <section id="journey" class="section-padding">
+            <div class="section-header">
+                <span class="section-subtitle" id="label-sub-journey"></span>
+                <h2 class="section-title" id="label-title-journey"></h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <!-- Injected dynamically -->
+            <div class="timeline" id="timeline-container"></div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section-padding">
+            <div class="section-header">
+                <span class="section-subtitle" id="label-sub-contact"></span>
+                <h2 class="section-title" id="label-title-contact"></h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="contact-wrapper">
+                <!-- Info cards (Injected dynamically) -->
+                <div class="contact-info" id="contact-info-container"></div>
+
+                <!-- Form -->
+                <div class="contact-form-container glass-card">
+                    <form id="portfolio-contact-form" autocomplete="off">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="form-name" id="label-form-name"></label>
+                                <input type="text" id="form-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-email" id="label-form-email"></label>
+                                <input type="email" id="form-email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-subject" id="label-form-subject"></label>
+                            <input type="text" id="form-subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-message" id="label-form-message"></label>
+                            <textarea id="form-message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary full-width" id="btn-submit-form">
+                            <!-- Injected dynamically -->
+                        </button>
+                    </form>
+                    <!-- Form Success Overlay -->
+                    <div class="form-success-overlay" id="form-success">
+                        <div class="success-content">
+                            <i class="fa-solid fa-circle-check success-icon"></i>
+                            <h3 id="label-form-success-header"></h3>
+                            <p id="label-form-success-desc"></p>
+                            <button class="btn btn-secondary btn-sm" id="btn-close-success"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p id="footer-copyright"></p>
+            <div class="footer-socials" id="footer-socials-container"></div>
+        </div>
+    </footer>
+
+    <!-- App Configuration -->
+    <script src="config.js"></script>
+    <!-- App Logic -->
+    <script src="app.js"></script>
+</body>
+</html>

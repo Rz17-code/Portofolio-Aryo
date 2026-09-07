@@ -1,0 +1,68 @@
+▲ Next.js 16.3.3 (Turbopack)
+- Local:         http://localhost:3002
+- Network:       http://192.168.0.45:3002
+✓ Ready in 1798ms
+✓ Running next.config.mjs took 55ms
+Creating turbopack project {
+  dir: 'C:\\Users\\LENOVO\\.gemini\\antigravity-ide\\scratch\\finance-portfolio',
+  testMode: true
+}
+
+ GET / 200 in 3.6s (next.js: 3.1s, application-code: 492ms)
+ GET / 200 in 261ms (next.js: 107ms, application-code: 154ms)
+ GET / 200 in 113ms (next.js: 25ms, application-code: 88ms)
+ GET / 200 in 107ms (next.js: 25ms, application-code: 81ms)
+✓ Compiled in 45ms
+ GET / 200 in 561ms (next.js: 37ms, application-code: 524ms)
+ GET / 200 in 117ms (next.js: 24ms, application-code: 93ms)
+✓ Compiled in 65ms
+ GET / 200 in 103ms (next.js: 25ms, application-code: 78ms)
+ GET / 200 in 108ms (next.js: 24ms, application-code: 84ms)
+ GET / 200 in 111ms (next.js: 28ms, application-code: 83ms)
+ GET / 200 in 456ms (next.js: 30ms, application-code: 425ms)
+ GET / 200 in 120ms (next.js: 36ms, application-code: 84ms)
+ GET / 200 in 133ms (next.js: 29ms, application-code: 105ms)
+✓ Compiled in 52ms
+ GET / 200 in 100ms (next.js: 23ms, application-code: 77ms)
+ GET / 200 in 154ms (next.js: 33ms, application-code: 121ms)
+✓ Compiled in 829ms
+ GET / 200 in 171ms (next.js: 51ms, application-code: 120ms)
+✓ Compiled in 44ms
+ GET / 404 in 1755ms (next.js: 1428ms, application-code: 328ms)
+ GET / 404 in 661ms (next.js: 43ms, application-code: 617ms)
+ GET / 404 in 622ms (next.js: 379ms, application-code: 244ms)
+ GET / 404 in 809ms (next.js: 37ms, application-code: 772ms)
+ GET / 200 in 631ms (next.js: 363ms, application-code: 268ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET / 200 in 161ms (next.js: 49ms, application-code: 111ms)
+✓ Compiled in 60ms
+ GET / 200 in 79ms (next.js: 26ms, application-code: 52ms)
+✓ Compiled in 48ms
+ GET / 200 in 88ms (next.js: 25ms, application-code: 63ms)
+✓ Compiled in 40ms
+ GET / 200 in 631ms (next.js: 29ms, application-code: 602ms)
+✓ Compiled in 40ms
+✓ Compiled in 268ms
+ GET / 200 in 84ms (next.js: 24ms, application-code: 60ms)
+✓ Compiled in 266ms
+✓ Compiled in 132ms
+ GET / 200 in 80ms (next.js: 24ms, application-code: 56ms)
+[browser] ./app/page.js:89:1
+Error: Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  87 |     </main>
+  88 |   );
+> 89 | }
+     | ^
+  90 |
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./app/page.js [Client Component Browser]
+    ./app/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/page.js [Client Component SSR]
+    ./app/page.js [Server Component] 
+ GET / 200 in 199ms (next.js: 36ms, application-code: 164ms)
