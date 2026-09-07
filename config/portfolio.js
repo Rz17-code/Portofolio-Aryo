@@ -184,34 +184,34 @@ export const PORTFOLIO_CONFIG = {
             id: "consolidated-accounting-system",
             icon: "fa-calculator",
             title: {
-                id: "Consolidated Web Accounting System (Aplikasi Web Akuntansi)",
-                en: "Consolidated Web Accounting System"
+                id: "Sistem Akuntansi Konsolidasi Multi-Entitas (40 Entitas CV)",
+                en: "Multi-Entity Consolidated Accounting Web System (40 Entities)"
             },
             category: { id: "Proyek Software Akuntansi", en: "Accounting Web App" },
-            metric: { id: "Multi-Entity • Automated P&L & Balance Sheet", en: "Multi-Entity • Automated P&L & Balance Sheet" },
+            metric: { id: "40 Entitas CV • Combined Assets Rp16,0B", en: "40 CV Entities • Combined Assets Rp16.0B" },
             description: {
-                id: "Merancang dan merakit aplikasi web sistem akuntansi konsolidasi untuk memproses penjurnalan otomatis, buku besar (ledger), neraca saldo, serta laporan laba rugi & neraca terstruktur.",
-                en: "Designed and built a consolidated web accounting system application to process automated journal entries, general ledgers, trial balances, and financial statements."
+                id: "Merancang dan membangun aplikasi web sistem akuntansi konsolidasi untuk mengelola pencatatan jurnal, buku besar, serta mengonsolidasikan laporan keuangan dari 40 entitas bisnis (CV) secara real-time.",
+                en: "Designed and built a consolidated web accounting system application to manage journal entries, ledgers, and consolidate financial statements across 40 business entities in real-time."
             },
-            tags: ["Accounting System", "Next.js / React", "General Ledger", "Financial Statements", "PSAK / GAAP"],
+            tags: ["Accounting System", "Multi-Entity Consolidation", "Next.js / React", "General Ledger", "Financial Statements"],
             problem: {
-                id: "Pencatatan akuntansi manual rentan risiko human error dalam penjurnalan, pembukuan ledger, dan penggabungan laporan keuangan antar entitas usaha.",
-                en: "Manual accounting processes carry high human error risk in general journal entry posting, ledger reconciliation, and inter-unit financial statement consolidation."
+                id: "Pengelolaan pencatatan akuntansi untuk 40 entitas bisnis (CV) secara terpisah sangat rentan kesalahan selisih transaksi, lambat dalam konsolidasi gabungan aset (Rp16,0B+), dan menyulitkan evaluasi profitabilitas per entitas.",
+                en: "Managing accounting records across 40 separate business entities (CVs) carried high transaction discrepancy risks, delayed combined asset consolidation (Rp16.0B+), and complicated profitability tracking per entity."
             },
             solution: {
-                id: "Mengembangkan aplikasi web sistem akuntansi dengan validasi debit-kredit otomatis, kalkulasi neraca saldo real-time, dan penyusunan Laporan Laba Rugi & Neraca Konsolidasi terpusat.",
-                en: "Developed a web accounting application with validated debit-credit rules, automated balance sheet calculation, and web-based Consolidated Income Statement generation."
+                id: "Membangun Web App Sistem Akuntansi Konsolidasi dengan modul Jurnal Kas, Utang, Piutang, Umum, Penyesuaian, Saldo Awal COA, Buku Besar, dan Dashboard Pemantauan Performa Laba/Rugi per CV berbasis data dummy terenkripsi.",
+                en: "Built a Consolidated Accounting Web System with Cash/AP/AR/General/Adjusting Journal modules, COA Opening Balances, Ledgers, and Entity Profitability Analytics Dashboard using encrypted dummy data."
             },
             impact: [
-                { id: "Mengotomatisasi posting jurnal ke buku besar & laporan keuangan secara instan dengan tingkat akurasi 100%.", en: "Automated journal posting to general ledger & financial statements instantly with 100% accuracy." },
-                { id: "Mempercepat proses penutupan buku bulanan (monthly closing) hingga 80%.", en: "Accelerated monthly closing procedures by up to 80%." },
-                { id: "Menyediakan audit trail transaksi yang transparan dan siap untuk audit internal.", en: "Provided transparent transaction audit trails ready for internal audits." }
+                { id: "Mengonsolidasikan performa keuangan & total gabungan aset Rp16,0+ Miliar dari 40 entitas bisnis CV secara otomatis.", en: "Automated financial consolidation & combined assets of Rp16.0+ Billion across 40 business entities." },
+                { id: "Memantau total omset Rp1,33B+ dan laba bersih Rp310M+ harian secara terpusat dengan akurasi 100%.", en: "Centralized daily tracking of Rp1.33B+ revenue and Rp310M+ net income with 100% accuracy." },
+                { id: "Menyediakan modul jurnal kas, piutang, utang, penyesuaian, dan eliminasi transaksi inter-company secara transparan.", en: "Provided cash, AR, AP, adjusting, and inter-company elimination journal modules transparently." }
             ],
-            tools: ["Next.js / React", "JavaScript", "Custom CSS", "Financial Database Architecture"],
+            tools: ["Next.js / React", "JavaScript", "Tailwind CSS / Glassmorphism UI", "COA & Financial Accounting Engine"],
             documentation: {
                 image: "/projects/cashflow-dashboard-demo.png",
-                alt: { id: "Tampilan Sistem Akuntansi Web Konsolidasi", en: "Consolidated Web Accounting System UI" },
-                caption: { id: "Dokumentasi antarmuka aplikasi web akuntansi konsolidasi dengan modul jurnal dan laporan keuangan.", en: "Documentation interface of consolidated web accounting application with journal and financial statement modules." }
+                alt: { id: "Tampilan Sistem Akuntansi Konsolidasi Multi-Entitas 40 CV", en: "Multi-Entity Consolidated Accounting System UI" },
+                caption: { id: "Dokumentasi antarmuka dashboard sistem akuntansi konsolidasi memantau aset Rp16,0B+ dan performa laba/rugi 40 CV (Data Dummy disimulasikan).", en: "Interface documentation of consolidated accounting dashboard tracking Rp16.0B+ assets and 40 CV P&L performance (Simulated Dummy Data)." }
             }
         }
     ],
