@@ -36,7 +36,7 @@ export const PORTFOLIO_CONFIG = {
         },
         { 
             icon: "fa-percent", 
-            target: 34.5, 
+            target: 18, 
             prefix: "", 
             suffix: " Miliar", 
             label: { id: "Arus Kas Bulanan", en: "Monthly Cash Flow" } 
@@ -89,8 +89,8 @@ export const PORTFOLIO_CONFIG = {
             role: { id: "Staff Accounting & Finance", en: "Accounting & Finance Staff" },
             company: "PT Bharata International Pharmaceutical",
             description: {
-                id: "Mengelola proses accounting dan finance untuk 5 entitas bisnis, termasuk pencatatan transaksi, jurnal, laporan manajemen dan pajak, arus kas Rp34,5 miliar per bulan, pembayaran vendor, serta rekonsiliasi bank.",
-                en: "Managed accounting and finance processes for five business entities, including transaction recording, journals, management and tax reporting, monthly cash flow, vendor payments, and bank reconciliation."
+                id: "Mengelola proses accounting dan finance untuk 5 entitas bisnis, termasuk pencatatan transaksi, jurnal, laporan manajemen dan pajak, arus kas Rp15 - Rp20 miliar per bulan, pembayaran vendor, serta rekonsiliasi bank.",
+                en: "Managed accounting and finance processes for five business entities, including transaction recording, journals, management and tax reporting, monthly cash flow of Rp15 - Rp20 billion, vendor payments, and bank reconciliation."
             },
             highlights: [
                 { id: "Menyusun laporan laba rugi, neraca, dan arus kas untuk kebutuhan manajemen, pajak, serta pelaporan tahunan.", en: "Prepared profit and loss, balance sheet, and cash-flow reports for management, tax, and annual reporting." },
@@ -126,7 +126,7 @@ export const PORTFOLIO_CONFIG = {
                 en: "Multi-Entity Cash-Flow Monitoring Dashboard"
             },
             category: { id: "Proyek 2025", en: "2025 Project" },
-            metric: { id: "5 Entitas • Rp34,5M/Bln", en: "5 Entities • Rp34.5B/Mo" },
+            metric: { id: "5 Entitas • Rp15 - 20M/Bln", en: "5 Entities • Rp15 - 20B/Mo" },
             description: {
                 id: "Membangun dashboard monitoring arus kas untuk bisnis multi entitas menggunakan AppSheet dan Google Looker Studio untuk memantau kas harian secara akurat.",
                 en: "Built a multi-entity cash-flow monitoring dashboard using AppSheet and Google Looker Studio to track daily cash flow accurately."
@@ -141,7 +141,7 @@ export const PORTFOLIO_CONFIG = {
                 en: "Integrated transaction data entry via AppSheet mobile app with Google Sheets database connected directly to Google Looker Studio analytical dashboard for centralized cash flow monitoring."
             },
             impact: [
-                { id: "100% visibilitas arus kas harian untuk 5 entitas bisnis (total arus kas Rp34,5 Miliar/bulan).", en: "100% daily cash flow visibility across 5 business entities (total cash flow Rp34.5 Billion/month)." },
+                { id: "100% visibilitas arus kas harian untuk 5 entitas bisnis (total arus kas Rp15 - Rp20 Miliar/bulan).", en: "100% daily cash flow visibility across 5 business entities (total cash flow Rp15 - Rp20 Billion/month)." },
                 { id: "Memangkas waktu penyusunan laporan posisi kas harian dari 3 hari menjadi otomatis & real-time.", en: "Cut daily cash position report generation time from 3 days to automated & real-time." },
                 { id: "Meminimalkan risiko selisih transaksi dan mengoptimalkan pembayaran vendor harian.", en: "Minimized transaction discrepancies and optimized daily vendor payment schedules." }
             ],
