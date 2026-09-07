@@ -10,33 +10,38 @@ import FinancialSimulator from '../components/FinancialSimulator';
 import { generateCV } from '../utils/cvGenerator';
 
 const copy = {
-  navExperience: { id: 'Pengalaman', en: 'Experience' },
-  navDemo: { id: 'Demo Interaktif', en: 'Live Demo' },
-  navProjects: { id: 'Proyek', en: 'Projects' },
-  navCertifications: { id: 'Sertifikasi', en: 'Certifications' },
-  navContact: { id: 'Kontak', en: 'Contact' },
-  contactMe: { id: 'Hubungi saya', en: 'Contact me' },
-  copyEmail: { id: 'Salin Email', en: 'Copy Email' },
-  downloadCV: { id: 'Unduh CV (PDF)', en: 'Download CV (PDF)' },
-  location: { id: 'Lokasi', en: 'Location' },
-  skills: { id: 'Keahlian', en: 'Skills' },
-  education: { id: 'Pendidikan', en: 'Education' },
-  careerEyebrow: { id: 'Riwayat karier', en: 'Career history' },
-  careerTitle: { id: 'Pengalaman profesional', en: 'Professional experience' },
-  projectEyebrow: { id: 'Pilihan karya', en: 'Selected work' },
-  projectTitle: { id: 'Proyek dan dampak', en: 'Projects and impact' },
-  certEyebrow: { id: 'Pengembangan profesional', en: 'Professional development' },
-  certTitle: { id: 'Sertifikasi', en: 'Certifications' },
-  contactLead: { id: 'Terbuka untuk peran akuntansi, keuangan, dan konsultasi.', en: 'Open to accounting, finance, and consulting opportunities.' },
-  whatsapp: { id: 'WhatsApp', en: 'WhatsApp' },
-  language: { id: 'Bahasa', en: 'Language' },
-  lightMode: { id: 'Aktifkan mode terang', en: 'Enable light mode' },
-  darkMode: { id: 'Aktifkan mode gelap', en: 'Enable dark mode' },
-  viewCaseStudy: { id: 'Lihat Detail Studi Kasus →', en: 'View Detailed Case Study →' }
+  navExperience: { id: 'Pengalaman', en: 'Experience', zh: '工作经历' },
+  navDemo: { id: 'Demo Interaktif', en: 'Live Demo', zh: '互动演示' },
+  navProjects: { id: 'Proyek', en: 'Projects', zh: '项目案例' },
+  navCertifications: { id: 'Sertifikasi', en: 'Certifications', zh: '专业认证' },
+  navContact: { id: 'Kontak', en: 'Contact', zh: '联系方式' },
+  contactMe: { id: 'Hubungi saya', en: 'Contact me', zh: '与我联系' },
+  copyEmail: { id: 'Salin Email', en: 'Copy Email', zh: '复制邮箱' },
+  downloadCV: { id: 'Unduh CV (PDF)', en: 'Download CV (PDF)', zh: '下载简历 (PDF)' },
+  location: { id: 'Lokasi', en: 'Location', zh: '工作地点' },
+  skills: { id: 'Keahlian', en: 'Skills', zh: '专业技能' },
+  education: { id: 'Pendidikan', en: 'Education', zh: '学历背景' },
+  careerEyebrow: { id: 'Riwayat karier', en: 'Career history', zh: '职业履历' },
+  careerTitle: { id: 'Pengalaman profesional', en: 'Professional experience', zh: '专业工作经验' },
+  projectEyebrow: { id: 'Pilihan karya', en: 'Selected work', zh: '精选项目' },
+  projectTitle: { id: 'Proyek dan dampak', en: 'Projects and impact', zh: '项目实践与成果' },
+  certEyebrow: { id: 'Pengembangan profesional', en: 'Professional development', zh: '职业发展' },
+  certTitle: { id: 'Sertifikasi', en: 'Certifications', zh: '专业证书' },
+  contactLead: { id: 'Terbuka untuk peran akuntansi, keuangan, dan konsultasi.', en: 'Open to accounting, finance, and consulting opportunities.', zh: "诚求财务、会计及商业咨询相关工作机会。" },
+  whatsapp: { id: 'WhatsApp', en: 'WhatsApp', zh: 'WhatsApp 电话' },
+  language: { id: 'Bahasa', en: 'Language', zh: '语言选择' },
+  lightMode: { id: 'Aktifkan mode terang', en: 'Enable light mode', zh: '切换浅色模式' },
+  darkMode: { id: 'Aktifkan mode gelap', en: 'Enable dark mode', zh: '切换深色模式' },
+  viewCaseStudy: { id: 'Lihat Detail Studi Kasus →', en: 'View Detailed Case Study →', zh: '查看详细案例研究 →' }
 };
 
 const translate = (value, language) => (typeof value === 'object' ? value[language] || value.id : value);
-const displayDate = (date, language) => language === 'en' ? date.replace('Sekarang', 'Present').replace('Okt', 'Oct') : date;
+const displayDate = (date, language) => {
+  if (language === 'zh') {
+    return date.replace('Mar 2025 - Sekarang', '2025年3月 - 至今').replace('Okt 2023 - Jul 2024', '2023年10月 - 2024年7月');
+  }
+  return language === 'en' ? date.replace('Sekarang', 'Present').replace('Okt', 'Oct') : date;
+};
 
 function SectionTitle({ eyebrow, title }) {
   return <div className="section-title"><p>{eyebrow}</p><h2>{title}</h2></div>;
@@ -56,7 +61,7 @@ export default function Home() {
     const savedLanguage = window.localStorage.getItem('portfolio-language');
     const savedTheme = window.localStorage.getItem('portfolio-theme');
     const frameId = window.requestAnimationFrame(() => {
-      if (savedLanguage === 'en' || savedLanguage === 'id') setLanguage(savedLanguage);
+      if (savedLanguage === 'en' || savedLanguage === 'id' || savedLanguage === 'zh') setLanguage(savedLanguage);
       setDarkMode(savedTheme === 'dark');
     });
     return () => window.cancelAnimationFrame(frameId);
@@ -172,6 +177,7 @@ export default function Home() {
               <select value={language} onChange={(event) => setLanguage(event.target.value)} aria-label={t(copy.language)}>
                 <option value="id">ID</option>
                 <option value="en">EN</option>
+                <option value="zh">中文</option>
               </select>
             </label>
             <button className="theme-toggle" type="button" onClick={() => setDarkMode((current) => !current)} aria-label={darkMode ? t(copy.lightMode) : t(copy.darkMode)} title={darkMode ? t(copy.lightMode) : t(copy.darkMode)}>
