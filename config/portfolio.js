@@ -209,7 +209,7 @@ export const PORTFOLIO_CONFIG = {
             ],
             tools: ["Next.js / React", "JavaScript", "Tailwind CSS / Glassmorphism UI", "COA & Financial Accounting Engine"],
             documentation: {
-                image: "/projects/cashflow-dashboard-demo.png",
+                image: "/projects/accounting-system-demo.png",
                 alt: { id: "Tampilan Sistem Akuntansi Konsolidasi Multi-Entitas 40 CV", en: "Multi-Entity Consolidated Accounting System UI" },
                 caption: { id: "Dokumentasi antarmuka dashboard sistem akuntansi konsolidasi memantau aset Rp16,0B+ dan performa laba/rugi 40 CV (Data Dummy disimulasikan).", en: "Interface documentation of consolidated accounting dashboard tracking Rp16.0B+ assets and 40 CV P&L performance (Simulated Dummy Data)." }
             }
