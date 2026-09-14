@@ -1998,11 +1998,113 @@ body.dark-theme .submit-form-btn {
   opacity: 0.8;
 }
 
+/* PDF Preview & Viewer inside Certifications Modal */
+.cert-pdf-action-box {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cert-pdf-action-box.fallback {
+  border-top: 1px dashed var(--line);
+  padding-top: 8px;
+}
+
+.fallback-note {
+  font-size: 11.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.cert-pdf-thumbnail {
+  width: 100%;
+  height: 180px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.cert-pdf-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.cert-pdf-btn {
+  flex: 1;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.cert-pdf-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background-color: var(--accent-glow);
+}
+
+.cert-pdf-btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+body.dark-theme .cert-pdf-btn.primary {
+  color: #14201b;
+}
+
+.cert-pdf-btn.primary:hover {
+  opacity: 0.9;
+}
+
+/* Fullscreen PDF Viewer Container inside Modal */
+.pdf-full-viewer-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+.pdf-viewer-bar {
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.pdf-iframe-full {
+  width: 100%;
+  height: 600px;
+  border: none;
+  flex: 1;
+}
+
 @media (max-width: 768px) {
   .cert-cards-grid {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 /* Tax Simulator Banner Trigger Card */

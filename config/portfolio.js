@@ -253,37 +253,43 @@ export const PORTFOLIO_CONFIG = {
             title: { id: "Bootcamp Finance, Accounting, Tax, & Audit", en: "Finance, Accounting, Tax, & Audit Bootcamp", zh: "财务、会计、税务与审计训练营" },
             provider: "MySkill.id",
             date: "Agt 2025",
-            credentialId: "Financial Reporting, Taxation & Auditing"
+            credentialId: "Financial Reporting, Taxation & Auditing",
+            pdfUrl: null
         },
         {
             title: { id: "Brevet Pajak A & B", en: "Brevet Tax A & B", zh: "Brevet A & B 税务专业认证" },
             provider: "BI Inspira",
             date: "2024",
-            credentialId: "PPh, PBB, dan Coretax"
+            credentialId: "PPh, PBB, dan Coretax",
+            pdfUrl: null
         },
         {
             title: { id: "IT Specialist - Data Analytics", en: "IT Specialist - Data Analytics", zh: "IT 专家 - 数据分析认证" },
             provider: "Certiport (Pearson VUE)",
             date: "29 Nov 2022",
-            credentialId: "ID: nDou-DkqQ (Certiport Verified)"
+            credentialId: "ID: nDou-DkqQ (Certiport Verified)",
+            pdfUrl: "/certificates/cert-data-analytics.pdf"
         },
         {
             title: { id: "IT Specialist - Databases", en: "IT Specialist - Databases", zh: "IT 专家 - 数据库 (RDBMS SQL) 认证" },
             provider: "Certiport (Pearson VUE)",
             date: "18 Okt 2022",
-            credentialId: "ID: nEsY-DwzP (Certiport Verified)"
+            credentialId: "ID: nEsY-DwzP (Certiport Verified)",
+            pdfUrl: "/certificates/cert-databases.pdf"
         },
         {
             title: { id: "Microsoft Office Specialist: Excel 2019 Expert", en: "Microsoft Office Specialist: Excel 2019 Expert", zh: "微软 Excel 2019 专家级认证" },
             provider: "Microsoft (Certiport)",
             date: "4 Okt 2022",
-            credentialId: "ID: rwb9-uSJ4 (Certiport Verified)"
+            credentialId: "ID: rwb9-uSJ4 (Certiport Verified)",
+            pdfUrl: "/certificates/cert-excel-expert.pdf"
         },
         {
             title: { id: "Microsoft Office Specialist: Excel 2019 Associate", en: "Microsoft Office Specialist: Excel 2019 Associate", zh: "微软 Excel 2019 初级专业认证" },
             provider: "Microsoft (Certiport)",
             date: "8 Sep 2022",
-            credentialId: "ID: Pzmh-uSRY (Certiport Verified)"
+            credentialId: "ID: Pzmh-uSRY (Certiport Verified)",
+            pdfUrl: "/certificates/cert-excel-associate.pdf"
         }
     ],
     simulatorDefaults: {

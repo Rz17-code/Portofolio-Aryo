@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const copy = {
   header: { id: "Kirim Pesan Langsung", en: "Send a Direct Message", zh: "发送直接留言" },
-  sub: { id: "Isi formulir di bawah ini untuk mendiskusikan peluang kerja sama, rekrutmen, atau konsultasi.", en: "Fill out the form below to discuss opportunities or consultation.", zh: "填写下方表格与我讨论合作机会或咨询。" },
+  sub: { id: "Isi formulir di bawah ini untuk mengirim email langsung ke haryosalam3@gmail.com.", en: "Fill out the form below to send an email directly to haryosalam3@gmail.com.", zh: "填写下方表格直接发送邮件至 haryosalam3@gmail.com。" },
   nameLabel: { id: "Nama Lengkap", en: "Full Name", zh: "姓名" },
   namePlaceholder: { id: "Masukkan nama Anda", en: "Enter your full name", zh: "请输入您的姓名" },
   emailLabel: { id: "Alamat Email", en: "Email Address", zh: "电子邮箱" },
@@ -13,10 +13,11 @@ const copy = {
   subjectPlaceholder: { id: "Topik diskusi / Rekrutmen", en: "Topic / Recruitment", zh: "主题/招聘咨询" },
   messageLabel: { id: "Pesan", en: "Message", zh: "留言内容" },
   messagePlaceholder: { id: "Tuliskan pesan Anda di sini...", en: "Type your message here...", zh: "在此输入您的留言..." },
-  submitBtn: { id: "Kirim Pesan", en: "Send Message", zh: "发送留言" },
-  submittingBtn: { id: "Mengirim...", en: "Sending...", zh: "发送中..." },
-  successTitle: { id: "✓ Pesan Terkirim!", en: "✓ Message Sent!", zh: "✓ 留言已发送！" },
-  successDesc: { id: "Terima kasih telah menghubungi. Pesan Anda telah dicatat.", en: "Thank you for reaching out. Your message has been received.", zh: "感谢您的联系，您的留言已成功提交。" },
+  submitBtn: { id: "Kirim Pesan Ke Email", en: "Send Message to Email", zh: "发送邮件" },
+  submittingBtn: { id: "Membuka Email Client...", en: "Opening Email Client...", zh: "正在打开邮件客户端..." },
+  successTitle: { id: "✉️ Pesan Siap Dikirimskan!", en: "✉️ Message Ready to Send!", zh: "✉️ 邮件准备就绪！" },
+  successDesc: { id: "Aplikasi email Anda (Gmail / Outlook) akan terbuka dengan pesan yang sudah terisi otomatis ke haryosalam3@gmail.com.", en: "Your email client (Gmail / Outlook) will open prefilled with your message to haryosalam3@gmail.com.", zh: "您的邮件客户端已预填好给 haryosalam3@gmail.com 的内容。" },
+  openEmailBtn: { id: "✉️ Buka / Kirim di Gmail / Email App →", en: "✉️ Open in Email App (Gmail / Outlook) →", zh: "✉️ 在邮件客户端打开 →" },
   sendAnother: { id: "Kirim Pesan Lainnya", en: "Send Another Message", zh: "发送另一条留言" }
 };
 
@@ -24,6 +25,7 @@ export default function ContactForm({ language = 'id', onShowToast }) {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [mailtoUrl, setMailtoUrl] = useState('');
 
   const translate = (obj) => (typeof obj === 'object' ? obj[language] || obj.id : obj);
 
@@ -32,13 +34,25 @@ export default function ContactForm({ language = 'id', onShowToast }) {
     if (!formData.name || !formData.email || !formData.message) return;
 
     setIsSubmitting(true);
+
+    const emailSubject = encodeURIComponent(formData.subject ? `[Portofolio] ${formData.subject}` : `Pesan Portofolio dari ${formData.name}`);
+    const emailBody = encodeURIComponent(
+      `Nama: ${formData.name}\nEmail: ${formData.email}\n\nPesan:\n${formData.message}\n\n---\nDikirim via Portofolio Rozindar Haryo Salam`
+    );
+
+    const link = `mailto:haryosalam3@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+    setMailtoUrl(link);
+
+    // Trigger mailto link directly
+    window.location.href = link;
+
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
       if (onShowToast) {
-        onShowToast(language === 'en' ? '✓ Message submitted successfully!' : '✓ Pesan berhasil terkirim!');
+        onShowToast(language === 'en' ? '✉️ Email client opened!' : '✉️ Aplikasi email telah dibuka!');
       }
-    }, 700);
+    }, 600);
   };
 
   const handleChange = (e) => {
@@ -117,16 +131,22 @@ export default function ContactForm({ language = 'id', onShowToast }) {
           <div className="success-icon">✉️</div>
           <h3>{translate(copy.successTitle)}</h3>
           <p>{translate(copy.successDesc)}</p>
-          <button
-            className="cv-btn"
-            type="button"
-            onClick={() => {
-              setIsSubmitted(false);
-              setFormData({ name: '', email: '', subject: '', message: '' });
-            }}
-          >
-            {translate(copy.sendAnother)}
-          </button>
+
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href={mailtoUrl} className="submit-form-btn" style={{ textDecoration: 'none' }}>
+              {translate(copy.openEmailBtn)}
+            </a>
+            <button
+              className="cv-btn"
+              type="button"
+              onClick={() => {
+                setIsSubmitted(false);
+                setFormData({ name: '', email: '', subject: '', message: '' });
+              }}
+            >
+              {translate(copy.sendAnother)}
+            </button>
+          </div>
         </div>
       )}
     </div>
