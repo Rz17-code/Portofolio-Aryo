@@ -59,7 +59,7 @@ a:hover {
   background: transparent;
   color: var(--ink);
   min-height: 100vh;
-  width: min(1120px, calc(100% - 48px));
+  width: min(1280px, calc(100% - 48px));
   margin: 0 auto;
   position: relative;
   z-index: 1;
@@ -1541,16 +1541,16 @@ body.dark-theme .submit-form-btn {
   animation: fadeIn 0.25s ease-out;
 }
 
-.tax-modal-content {
+.tax-modal-content, .modal-container {
   background: var(--paper);
   border: 1px solid var(--line);
   color: var(--ink);
-  width: min(920px, 100%);
-  max-height: 90vh;
+  width: min(1180px, 94vw);
+  max-height: 92vh;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1566,7 +1566,7 @@ body.dark-theme .submit-form-btn {
 }
 
 .modal-header {
-  padding: 24px 28px 18px;
+  padding: 26px 36px 20px;
   border-bottom: 1px solid var(--line);
   display: flex;
   align-items: flex-start;
@@ -1617,8 +1617,8 @@ body.dark-theme .submit-form-btn {
   display: flex;
   border-bottom: 1px solid var(--line);
   background: var(--card-bg);
-  padding: 0 28px;
-  gap: 12px;
+  padding: 0 36px;
+  gap: 16px;
   overflow-x: auto;
 }
 
@@ -1647,16 +1647,16 @@ body.dark-theme .submit-form-btn {
 }
 
 /* Modal Body & Grids */
-.tax-modal-body {
-  padding: 24px 28px;
+.tax-modal-body, .modal-body {
+  padding: 28px 36px;
   overflow-y: auto;
   flex: 1;
 }
 
 .tax-grid, .dep-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 28px;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 36px;
 }
 
 .tax-form-section h4, .tax-results-section h4 {
