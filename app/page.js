@@ -44,7 +44,7 @@ const copy = {
   taxDemoEyebrow: { id: "Demo Perpajakan & Aset Interaktif", en: "Interactive Tax & Asset Demo", zh: "互动税务与资产演示" },
   taxDemoTitle: { id: "Kalkulator Pajak Indonesia & Penyusutan Fiskal", en: "Indonesian Tax & Depreciation Engine", zh: "印尼税务与折旧计算引擎" },
   taxDemoDesc: { id: "Simulasikan perhitungan PPh Pasal 21 (TER & UU HPP), PPh 22, PPh Final (PP 55/2022), serta Jadwal Penyusutan Aset Tetap berdasarkan PMK 72/2023 secara instan dalam modul Pop-up.", en: "Simulate PPh 21, PPh 22, PPh Final, and Asset Depreciation schedules instantly in a Pop-up modal.", zh: "在弹窗中即时模拟 PPh 21, 22, PPh Final 及资产折旧计划。" },
-  openTaxModal: { id: "⚡ Buka Kalkulator Pajak & Penyusutan (Pop-up) →", en: "⚡ Open Tax & Depreciation Calculator (Pop-up) →", zh: "⚡ 打开税务与折旧计算器 (弹窗) →" }
+  openTaxModal: { id: "Buka Kalkulator Pajak & Penyusutan (Pop-up) →", en: "Open Tax & Depreciation Calculator (Pop-up) →", zh: "打开税务与折旧计算器 (弹窗) →" }
 };
 
 const translate = (value, language) => (typeof value === 'object' ? value[language] || value.id : value);
@@ -68,6 +68,7 @@ export default function Home() {
   const [isTaxModalOpen, setIsTaxModalOpen] = useState(false);
   const [isCertModalOpen, setIsCertModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const { profile, stats, skills, journey, projects, education, certifications } = PORTFOLIO_CONFIG;
   const t = (value) => translate(value, language);
@@ -75,6 +76,17 @@ export default function Home() {
   const filteredProjects = selectedCategory === 'all'
     ? projects
     : projects.filter((p) => p.categoryGroup === selectedCategory);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        setScrollProgress((window.scrollY / totalHeight) * 100);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const savedLanguage = window.localStorage.getItem('portfolio-language');
@@ -154,13 +166,13 @@ export default function Home() {
   const handleCopyEmail = () => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(profile.email);
-      showToast(language === 'en' ? '✓ Email copied to clipboard!' : '✓ Email berhasil disalin ke papan klip!');
+      showToast(language === 'en' ? 'Email copied to clipboard!' : 'Email berhasil disalin ke papan klip!');
     }
   };
 
   const handleDownloadCV = () => {
     generateCV(language);
-    showToast(language === 'en' ? '📄 CV downloaded successfully!' : '📄 CV berhasil diunduh dalam format PDF!');
+    showToast(language === 'en' ? 'CV downloaded successfully!' : 'CV berhasil diunduh dalam format PDF!');
   };
 
   return (
@@ -201,6 +213,8 @@ export default function Home() {
       )}
 
       <main className={`portfolio-shell${darkMode ? ' dark-mode' : ''}`}>
+        <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }} />
+
         <header className="site-header">
           <a className="wordmark" href="#top" onClick={(e) => handleNavClick(e, 'top')} aria-label={profile.fullName}>{profile.shortName}</a>
           <nav aria-label="Primary navigation">
@@ -213,7 +227,12 @@ export default function Home() {
           <div className="header-controls">
             <VisitorTracker language={language} />
             <button className="cv-btn" type="button" onClick={handleDownloadCV} title={t(copy.downloadCV)}>
-              📄 {t(copy.downloadCV)}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              {t(copy.downloadCV)}
             </button>
             <label className="language-control">
               <span className="sr-only">{t(copy.language)}</span>
@@ -372,7 +391,7 @@ export default function Home() {
               <SectionTitle eyebrow={t(copy.certEyebrow)} title={t(copy.certTitle)} />
               <div className="tax-demo-banner">
                 <div className="tax-banner-header">
-                  <span className="modal-badge">📜 Kredensial Terverifikasi</span>
+                  <span className="modal-badge">Kredensial Terverifikasi</span>
                   <h3>Daftar Sertifikasi Resmi & Kredensial Terverifikasi</h3>
                   <p>Mencakup Sertifikasi Profesional BI Inspira, Microsoft Office Specialist (Excel Expert & Associate), Certiport (Pearson VUE) IT Specialist Data Analytics & Databases, serta MySkill.id Bootcamp.</p>
                 </div>
@@ -381,7 +400,13 @@ export default function Home() {
                   className="open-tax-modal-btn"
                   onClick={() => setIsCertModalOpen(true)}
                 >
-                  📜 Buka Modul Sertifikasi & Kredensial Resmi ({certifications.length}) →
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                  </svg>
+                  Buka Modul Sertifikasi & Kredensial Resmi ({certifications.length}) →
                 </button>
               </div>
             </section>

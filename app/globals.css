@@ -21,6 +21,19 @@ html {
   scroll-padding-top: 100px;
 }
 
+/* Smooth Top Scroll Progress Bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), #10b981);
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+  border-radius: 0 2px 2px 0;
+  box-shadow: 0 0 10px var(--accent);
+}
+
 body {
   margin: 0;
   background: var(--paper);
