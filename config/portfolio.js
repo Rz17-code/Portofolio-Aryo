@@ -250,6 +250,12 @@ export const PORTFOLIO_CONFIG = {
     ],
     certifications: [
         {
+            title: { id: "Bootcamp Finance, Accounting, Tax, & Audit", en: "Finance, Accounting, Tax, & Audit Bootcamp", zh: "财务、会计、税务与审计训练营认证" },
+            provider: "MySkill.id",
+            date: "Agt 2025",
+            credentialId: "Financial Reporting, Taxation & Auditing"
+        },
+        {
             title: { id: "Brevet Pajak A & B", en: "Brevet Tax A & B", zh: "Brevet A & B 税务专业认证" },
             provider: "BI Inspira",
             date: "2024",
