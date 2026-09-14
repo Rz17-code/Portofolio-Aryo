@@ -14,9 +14,9 @@ const copy = {
   messageLabel: { id: "Pesan", en: "Message", zh: "留言内容" },
   messagePlaceholder: { id: "Tuliskan pesan Anda di sini...", en: "Type your message here...", zh: "在此输入您的留言..." },
   submitBtn: { id: "🚀 Kirim Pesan Ke Inbox Email", en: "🚀 Send Message to Inbox Email", zh: "🚀 发送至邮箱" },
-  mailtoBtn: { id: "✉️ Kirim via Email App / Gmail", en: "✉️ Send via Email App / Gmail", zh: "✉️ 通过邮件客户端发送" },
+  waBtn: { id: "💬 Kirim via WhatsApp Direct", en: "💬 Send via WhatsApp Direct", zh: "💬 通过 WhatsApp 发送" },
   successTitle: { id: "✓ Pesan Terkirim!", en: "✓ Message Sent!", zh: "✓ 留言已发送！" },
-  successDesc: { id: "Terima kasih! Pesan Anda telah diteruskan ke haryosalam3@gmail.com. Silakan periksa inbox / spam email Anda untuk konfirmasi aktivasi FormSubmit pertama kali.", en: "Thank you! Your message has been routed to haryosalam3@gmail.com.", zh: "感谢！您的留言已发送至 haryosalam3@gmail.com。" },
+  successDesc: { id: "Terima kasih! Pesan Anda telah diteruskan ke haryosalam3@gmail.com.", en: "Thank you! Your message has been routed to haryosalam3@gmail.com.", zh: "感谢！您的留言已发送至 haryosalam3@gmail.com。" },
   sendAnother: { id: "Kirim Pesan Lainnya", en: "Send Another Message", zh: "发送另一条留言" }
 };
 
@@ -30,11 +30,10 @@ export default function ContactForm({ language = 'id', onShowToast }) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const emailSubject = encodeURIComponent(formData.subject ? `[Portofolio] ${formData.subject}` : `Pesan Portofolio dari ${formData.name || 'Pengunjung'}`);
-  const emailBody = encodeURIComponent(
-    `Nama: ${formData.name}\nEmail: ${formData.email}\n\nPesan:\n${formData.message}\n\n---\nDikirim via Portofolio Rozindar Haryo Salam`
+  const waText = encodeURIComponent(
+    `Halo Rozindar Haryo Salam,\n\nNama: ${formData.name || '-'}\nEmail: ${formData.email || '-'}\nSubjek: ${formData.subject || 'Diskusi Portofolio'}\n\nPesan:\n${formData.message || '-'}`
   );
-  const mailtoUrl = `mailto:haryosalam3@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+  const waUrl = `https://wa.me/6281215288361?text=${waText}`;
 
   return (
     <div className="contact-form-card">
@@ -115,8 +114,8 @@ export default function ContactForm({ language = 'id', onShowToast }) {
           <button className="submit-form-btn" type="submit">
             {translate(copy.submitBtn)} &rarr;
           </button>
-          <a href={mailtoUrl} className="cv-btn" style={{ textDecoration: 'none' }}>
-            {translate(copy.mailtoBtn)} &rarr;
+          <a href={waUrl} target="_blank" rel="noreferrer" className="cv-btn" style={{ textDecoration: 'none' }}>
+            {translate(copy.waBtn)} &rarr;
           </a>
         </div>
       </form>
