@@ -7,6 +7,7 @@ import CanvasBackground from '../components/CanvasBackground';
 import ProjectModal from '../components/ProjectModal';
 import StatsBar from '../components/StatsBar';
 import FinancialSimulator from '../components/FinancialSimulator';
+import ContactForm from '../components/ContactForm';
 import { generateCV } from '../utils/cvGenerator';
 
 const copy = {
@@ -32,7 +33,11 @@ const copy = {
   language: { id: 'Bahasa', en: 'Language', zh: '语言选择' },
   lightMode: { id: 'Aktifkan mode terang', en: 'Enable light mode', zh: '切换浅色模式' },
   darkMode: { id: 'Aktifkan mode gelap', en: 'Enable dark mode', zh: '切换深色模式' },
-  viewCaseStudy: { id: 'Lihat Detail Studi Kasus →', en: 'View Detailed Case Study →', zh: '查看详细案例研究 →' }
+  viewCaseStudy: { id: 'Lihat Detail Studi Kasus →', en: 'View Detailed Case Study →', zh: '查看详细案例研究 →' },
+  catAll: { id: 'Semua Proyek', en: 'All Projects', zh: '所有项目' },
+  catAccounting: { id: 'Akuntansi & Keuangan', en: 'Accounting & Cash Flow', zh: '会计与现金流' },
+  catAnalytics: { id: 'Analisis Data', en: 'Data Analytics', zh: '数据分析' },
+  catSoftware: { id: 'Aplikasi & Sistem Web', en: 'Web Apps & Systems', zh: 'Web 应用与系统' }
 };
 
 const translate = (value, language) => (typeof value === 'object' ? value[language] || value.id : value);
@@ -52,10 +57,15 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   const [activeSection, setActiveSection] = useState('top');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [toastMessage, setToastMessage] = useState('');
 
   const { profile, stats, skills, journey, projects, education, certifications } = PORTFOLIO_CONFIG;
   const t = (value) => translate(value, language);
+
+  const filteredProjects = selectedCategory === 'all'
+    ? projects
+    : projects.filter((p) => p.categoryGroup === selectedCategory);
 
   useEffect(() => {
     const savedLanguage = window.localStorage.getItem('portfolio-language');
@@ -223,8 +233,41 @@ export default function Home() {
 
             <section id="work" className="content-section reveal">
               <SectionTitle eyebrow={t(copy.projectEyebrow)} title={t(copy.projectTitle)} />
+
+              {/* Category Filter Tabs */}
+              <div className="project-filter-tabs" role="tablist" aria-label="Filter Proyek">
+                <button
+                  type="button"
+                  className={`filter-btn${selectedCategory === 'all' ? ' active' : ''}`}
+                  onClick={() => setSelectedCategory('all')}
+                >
+                  {t(copy.catAll)} ({projects.length})
+                </button>
+                <button
+                  type="button"
+                  className={`filter-btn${selectedCategory === 'accounting' ? ' active' : ''}`}
+                  onClick={() => setSelectedCategory('accounting')}
+                >
+                  {t(copy.catAccounting)}
+                </button>
+                <button
+                  type="button"
+                  className={`filter-btn${selectedCategory === 'analytics' ? ' active' : ''}`}
+                  onClick={() => setSelectedCategory('analytics')}
+                >
+                  {t(copy.catAnalytics)}
+                </button>
+                <button
+                  type="button"
+                  className={`filter-btn${selectedCategory === 'software' ? ' active' : ''}`}
+                  onClick={() => setSelectedCategory('software')}
+                >
+                  {t(copy.catSoftware)}
+                </button>
+              </div>
+
               <div className="project-list">
-                {projects.map((project) => (
+                {filteredProjects.map((project) => (
                   <article className="project-item" key={t(project.title)}>
                     <div className="project-heading">
                       <p>{t(project.category)}</p>
@@ -266,6 +309,9 @@ export default function Home() {
                 <a href={`https://wa.me/62${profile.phone.slice(1)}`} target="_blank" rel="noreferrer">{t(copy.whatsapp)}: {profile.phone} <span aria-hidden="true">&rarr;</span></a>
                 <a href={profile.socials.instagram} target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">&rarr;</span></a>
               </div>
+
+              {/* Interactive Contact Form */}
+              <ContactForm language={language} onShowToast={showToast} />
             </section>
           </div>
         </div>

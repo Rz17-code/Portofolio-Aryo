@@ -129,6 +129,7 @@ export const PORTFOLIO_CONFIG = {
     projects: [
         {
             id: "cashflow-dashboard",
+            categoryGroup: "accounting",
             icon: "fa-chart-line",
             title: {
                 id: "Dashboard Cashflow Monitoring Multi Entitas Bisnis",
@@ -167,6 +168,7 @@ export const PORTFOLIO_CONFIG = {
         },
         {
             id: "sales-logistics-analytics",
+            categoryGroup: "analytics",
             icon: "fa-chart-pie",
             title: {
                 id: "Sistem Analisis Penjualan & Performa Logistik (500K+ Data)",
@@ -200,6 +202,7 @@ export const PORTFOLIO_CONFIG = {
         },
         {
             id: "consolidated-accounting-system",
+            categoryGroup: "software",
             icon: "fa-calculator",
             title: {
                 id: "Sistem Akuntansi Konsolidasi Multi-Entitas (40 Entitas CV)",
