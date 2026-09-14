@@ -8,6 +8,7 @@ import ProjectModal from '../components/ProjectModal';
 import StatsBar from '../components/StatsBar';
 import FinancialSimulator from '../components/FinancialSimulator';
 import ContactForm from '../components/ContactForm';
+import TaxDepreciationModal from '../components/TaxDepreciationModal';
 import { generateCV } from '../utils/cvGenerator';
 
 const copy = {
@@ -37,7 +38,11 @@ const copy = {
   catAll: { id: 'Semua Proyek', en: 'All Projects', zh: '所有项目' },
   catAccounting: { id: 'Akuntansi & Keuangan', en: 'Accounting & Cash Flow', zh: '会计与现金流' },
   catAnalytics: { id: 'Analisis Data', en: 'Data Analytics', zh: '数据分析' },
-  catSoftware: { id: 'Aplikasi & Sistem Web', en: 'Web Apps & Systems', zh: 'Web 应用与系统' }
+  catSoftware: { id: 'Aplikasi & Sistem Web', en: 'Web Apps & Systems', zh: 'Web 应用与系统' },
+  taxDemoEyebrow: { id: "Demo Perpajakan & Aset Interaktif", en: "Interactive Tax & Asset Demo", zh: "互动税务与资产演示" },
+  taxDemoTitle: { id: "Kalkulator Pajak Indonesia & Penyusutan Fiskal", en: "Indonesian Tax & Depreciation Engine", zh: "印尼税务与折旧计算引擎" },
+  taxDemoDesc: { id: "Simulasikan perhitungan PPh Pasal 21 (TER & UU HPP), PPh 22, PPh Final (PP 55/2022), serta Jadwal Penyusutan Aset Tetap berdasarkan PMK 72/2023 secara instan dalam modul Pop-up.", en: "Simulate PPh 21, PPh 22, PPh Final, and Asset Depreciation schedules instantly in a Pop-up modal.", zh: "在弹窗中即时模拟 PPh 21, 22, PPh Final 及资产折旧计划。" },
+  openTaxModal: { id: "⚡ Buka Kalkulator Pajak & Penyusutan (Pop-up) →", en: "⚡ Open Tax & Depreciation Calculator (Pop-up) →", zh: "⚡ 打开税务与折旧计算器 (弹窗) →" }
 };
 
 const translate = (value, language) => (typeof value === 'object' ? value[language] || value.id : value);
@@ -58,6 +63,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('top');
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [isTaxModalOpen, setIsTaxModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
 
   const { profile, stats, skills, journey, projects, education, certifications } = PORTFOLIO_CONFIG;
@@ -125,6 +131,9 @@ export default function Home() {
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
     setActiveSection(targetId);
+    if (targetId === 'demo') {
+      setIsTaxModalOpen(true);
+    }
     const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -165,6 +174,14 @@ export default function Home() {
           project={selectedProject}
           language={language}
           onClose={() => setSelectedProject(null)}
+        />
+      )}
+
+      {/* Tax & Asset Depreciation Interactive Modal */}
+      {isTaxModalOpen && (
+        <TaxDepreciationModal
+          language={language}
+          onClose={() => setIsTaxModalOpen(false)}
         />
       )}
 
@@ -226,9 +243,32 @@ export default function Home() {
               <div className="timeline">{journey.map((job) => <article className="timeline-item" key={`${job.company}-${job.date}`}><p className="period">{displayDate(job.date, language)}</p><div><h3>{t(job.role)}</h3><p className="company">{job.company}</p><p className="description">{t(job.description)}</p><ul className="highlights">{job.highlights.map((highlight) => <li key={t(highlight)}>{t(highlight)}</li>)}</ul><ul className="tags" aria-label={t(copy.skills)}>{job.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul></div></article>)}</div>
             </section>
 
-            {/* Financial Simulator / Interactive Demo Section */}
+            {/* Financial Simulator & Tax Calculator Interactive Demo Section */}
             <section id="demo" className="content-section reveal">
-              <FinancialSimulator language={language} />
+              <div className="tax-demo-banner">
+                <div className="tax-banner-header">
+                  <span className="modal-badge">{t(copy.taxDemoEyebrow)}</span>
+                  <h3>{t(copy.taxDemoTitle)}</h3>
+                  <p>{t(copy.taxDemoDesc)}</p>
+                </div>
+                <div className="tax-features-pills">
+                  <span className="tax-pill">✓ PPh 21 (TER & UU HPP 2021)</span>
+                  <span className="tax-pill">✓ PPh Final UMKM 0.5% (PP 55/2022)</span>
+                  <span className="tax-pill">✓ PPh 22 & Sewa 10%</span>
+                  <span className="tax-pill">✓ Penyusutan Aset (PMK 72/2023)</span>
+                </div>
+                <button
+                  type="button"
+                  className="open-tax-modal-btn"
+                  onClick={() => setIsTaxModalOpen(true)}
+                >
+                  {t(copy.openTaxModal)}
+                </button>
+              </div>
+
+              <div style={{ marginTop: '36px' }}>
+                <FinancialSimulator language={language} />
+              </div>
             </section>
 
             <section id="work" className="content-section reveal">
