@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
   title: "Rozindar Haryo Salam | Accounting, Finance & Data Analytics Portfolio",
@@ -95,6 +96,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         {children}
+        <Analytics />
       </body>
     </html>
   );
