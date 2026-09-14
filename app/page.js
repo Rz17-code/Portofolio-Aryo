@@ -9,6 +9,7 @@ import StatsBar from '../components/StatsBar';
 import FinancialSimulator from '../components/FinancialSimulator';
 import ContactForm from '../components/ContactForm';
 import TaxDepreciationModal from '../components/TaxDepreciationModal';
+import CertificationsModal from '../components/CertificationsModal';
 import { generateCV } from '../utils/cvGenerator';
 
 const copy = {
@@ -64,6 +65,7 @@ export default function Home() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isTaxModalOpen, setIsTaxModalOpen] = useState(false);
+  const [isCertModalOpen, setIsCertModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
 
   const { profile, stats, skills, journey, projects, education, certifications } = PORTFOLIO_CONFIG;
@@ -134,6 +136,9 @@ export default function Home() {
     if (targetId === 'demo') {
       setIsTaxModalOpen(true);
     }
+    if (targetId === 'certifications') {
+      setIsCertModalOpen(true);
+    }
     const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -182,6 +187,15 @@ export default function Home() {
         <TaxDepreciationModal
           language={language}
           onClose={() => setIsTaxModalOpen(false)}
+        />
+      )}
+
+      {/* Certifications & Official Credentials Pop-up Modal */}
+      {isCertModalOpen && (
+        <CertificationsModal
+          language={language}
+          certifications={certifications}
+          onClose={() => setIsCertModalOpen(false)}
         />
       )}
 
@@ -234,7 +248,7 @@ export default function Home() {
             <section><p className="side-label">{t(copy.location)}</p><p>{profile.location}</p></section>
             <section><p className="side-label">{t(copy.skills)}</p><ul className="skill-list">{skills.map((skill) => <li key={t(skill.title)}>{t(skill.title)}</li>)}</ul></section>
             <section><p className="side-label">{t(copy.education)}</p>{education.map((item) => <div className="compact-entry" key={item.institution}><strong>{t(item.degree)}</strong><span>{item.institution}</span><span>{item.date}</span></div>)}</section>
-            <section><p className="side-label">{t(copy.navCertifications)}</p>{certifications.map((item) => <div className="compact-entry" key={item.credentialId}><strong>{t(item.title)}</strong><span>{item.provider}, {item.date}</span></div>)}</section>
+            <section><p className="side-label">{t(copy.navCertifications)}</p>{certifications.slice(0, 3).map((item) => <div className="compact-entry" key={item.credentialId}><strong>{t(item.title)}</strong><span>{item.provider}, {item.date}</span></div>)}<button type="button" className="project-card-action" onClick={() => setIsCertModalOpen(true)}>Lihat semua ({certifications.length}) →</button></section>
           </aside>
 
           <div className="main-content">
@@ -338,7 +352,20 @@ export default function Home() {
 
             <section id="certifications" className="content-section reveal">
               <SectionTitle eyebrow={t(copy.certEyebrow)} title={t(copy.certTitle)} />
-              <div className="certification-list">{certifications.map((certification) => <article className="certification-item" key={certification.credentialId}><div><h3>{t(certification.title)}</h3><p>{certification.provider}</p></div><div className="credential"><span>{certification.date}</span><span>{certification.credentialId}</span></div></article>)}</div>
+              <div className="tax-demo-banner">
+                <div className="tax-banner-header">
+                  <span className="modal-badge">📜 Kredensial Terverifikasi</span>
+                  <h3>Daftar Sertifikasi Resmi & Kredensial Terverifikasi</h3>
+                  <p>Mencakup Sertifikasi Profesional BI Inspira, Microsoft Office Specialist (Excel Expert & Associate), Certiport (Pearson VUE) IT Specialist Data Analytics & Databases, serta MySkill.id Bootcamp.</p>
+                </div>
+                <button
+                  type="button"
+                  className="open-tax-modal-btn"
+                  onClick={() => setIsCertModalOpen(true)}
+                >
+                  📜 Buka Modul Sertifikasi & Kredensial Resmi ({certifications.length}) →
+                </button>
+              </div>
             </section>
 
             <section id="contact" className="contact-section reveal">

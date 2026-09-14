@@ -1896,6 +1896,115 @@ body.dark-theme .submit-form-btn {
   }
 }
 
+/* Certifications Pop-up Modal Grid & Cards */
+.cert-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.cert-modal-card {
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  box-shadow: var(--card-shadow);
+  transition: all 0.25s ease;
+}
+
+.cert-modal-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.cert-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cert-icon-badge {
+  font-size: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cert-meta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cert-provider {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.cert-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.cert-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.cert-credential-box {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cert-id-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.cert-verify-link {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  transition: opacity 0.2s ease;
+}
+
+.cert-verify-link:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .cert-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 /* Tax Simulator Banner Trigger Card */
 .tax-demo-banner {
   background: var(--card-bg);
