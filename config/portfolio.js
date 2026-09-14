@@ -262,6 +262,18 @@ export const PORTFOLIO_CONFIG = {
             credentialId: "PPh, PBB, dan Coretax"
         },
         {
+            title: { id: "Data Analytics Certified", en: "Data Analytics Certified", zh: "数据分析专业认证" },
+            provider: "Pearson VUE",
+            date: "2022",
+            credentialId: "Data Analysis & Business Intelligence"
+        },
+        {
+            title: { id: "Database Certified (RDBMS SQL)", en: "Database Certified (RDBMS SQL)", zh: "RDBMS SQL 数据库专业认证" },
+            provider: "Pearson VUE",
+            date: "2022",
+            credentialId: "Relational Database Management & SQL"
+        },
+        {
             title: { id: "Microsoft Excel Associate & Expert", en: "Microsoft Excel Associate & Expert", zh: "微软 Excel 专家与高级认证" },
             provider: "Microsoft",
             date: "2022",
