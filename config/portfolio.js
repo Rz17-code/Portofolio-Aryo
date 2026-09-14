@@ -18,7 +18,8 @@ export const PORTFOLIO_CONFIG = {
         phone: "081215288361",
         location: "Cilacap, Jawa Tengah",
         socials: {
-            linkedin: "https://www.linkedin.com/in/rozindarharyosalam/"
+            linkedin: "https://www.linkedin.com/in/rozindarharyosalam/",
+            instagram: "https://www.instagram.com/rozindar.haryo/"
         }
     },
     stats: [

@@ -195,6 +195,7 @@ export default function Home() {
             <a className="primary-link" href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>{t(copy.contactMe)} <span aria-hidden="true">&rarr;</span></a>
             <button className="copy-btn" type="button" onClick={handleCopyEmail}>📋 {t(copy.copyEmail)}</button>
             <a href={profile.socials.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href={profile.socials.instagram} target="_blank" rel="noreferrer">Instagram</a>
           </div>
 
           {/* Hero Impact Stats Counter Bar */}
@@ -263,6 +264,7 @@ export default function Home() {
                 <a href={`mailto:${profile.email}`}>{profile.email} <span aria-hidden="true">&rarr;</span></a>
                 <button className="copy-btn" type="button" onClick={handleCopyEmail}>📋 {t(copy.copyEmail)}</button>
                 <a href={`https://wa.me/62${profile.phone.slice(1)}`} target="_blank" rel="noreferrer">{t(copy.whatsapp)}: {profile.phone} <span aria-hidden="true">&rarr;</span></a>
+                <a href={profile.socials.instagram} target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">&rarr;</span></a>
               </div>
             </section>
           </div>
