@@ -318,6 +318,51 @@ h1 {
   transform: translateX(4px);
 }
 
+/* Branded Social & Action Pill Buttons */
+.social-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: 'Manrope', Arial, sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(8px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-pill-btn svg {
+  flex-shrink: 0;
+  color: var(--accent);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.social-pill-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-glow);
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.social-pill-btn:hover svg {
+  transform: scale(1.12);
+}
+
+.contact-links-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
 /* Layout Grid & Sidebar */
 .content-grid {
   border-top: 1px solid var(--line);
