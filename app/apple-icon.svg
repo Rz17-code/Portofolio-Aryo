@@ -1,0 +1,6 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="180" height="180" rx="40" fill="#087a63"/>
+  <path d="M30 130L65 95L98 112L150 55" stroke="#67d9ad" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="150" cy="55" r="10" fill="#67d9ad"/>
+  <text x="90" y="140" font-family="'DM Mono', monospace, sans-serif" font-weight="700" font-size="64" fill="#ffffff" text-anchor="middle" letter-spacing="2">RH</text>
+</svg>
