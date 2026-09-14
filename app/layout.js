@@ -19,11 +19,11 @@ export const metadata = {
   ],
   authors: [{ name: "Rozindar Haryo Salam", url: "https://www.linkedin.com/in/rozindarharyosalam/" }],
   creator: "Rozindar Haryo Salam",
-  metadataBase: new URL("https://rozindar-haryo.vercel.app"),
+  metadataBase: new URL("https://portofolio-aryo.vercel.app"),
   openGraph: {
     title: "Rozindar Haryo Salam | Accounting & Finance Portfolio",
     description: "Lulusan S1 Akuntansi berpengalaman dalam Accounting, Finance, dan Data Analysis. Pengelolaan arus kas Rp15-20B/bulan & analisis 500K+ data transaksi.",
-    url: "https://rozindar-haryo.vercel.app",
+    url: "https://portofolio-aryo.vercel.app",
     siteName: "Rozindar Haryo Salam Portfolio",
     images: [
       {
@@ -61,7 +61,7 @@ const jsonLdData = {
     "@type": "Organization",
     "name": "PT Bharata International Pharmaceutical"
   },
-  "url": "https://rozindar-haryo.vercel.app",
+  "url": "https://portofolio-aryo.vercel.app",
   "telephone": "+6281215288361",
   "email": "haryosalam3@gmail.com",
   "address": {
