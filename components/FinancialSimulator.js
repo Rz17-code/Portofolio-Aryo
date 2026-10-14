@@ -15,10 +15,10 @@ export default function FinancialSimulator({ language }) {
   const [activeTab, setActiveTab] = useState('forecast'); // 'forecast', 'capital', 'ratios'
 
   // Ratios calculator states
-  const [currentAssets, setCurrentAssets] = useState(150000);
-  const [currentLiabilities, setCurrentLiabilities] = useState(75000);
-  const [netIncome, setNetIncome] = useState(50000);
-  const [revenue, setRevenue] = useState(250000);
+  const [currentAssets, setCurrentAssets] = useState(1500000000);
+  const [currentLiabilities, setCurrentLiabilities] = useState(750000000);
+  const [netIncome, setNetIncome] = useState(500000000);
+  const [revenue, setRevenue] = useState(2500000000);
 
   const resetVariables = () => {
     setBaseRevenue(simulatorDefaults.baseRevenue);
@@ -31,7 +31,7 @@ export default function FinancialSimulator({ language }) {
   const forecastData = years.map((yr) => {
     const rev = baseRevenue * Math.pow(1 + expectedGrowth / 100, yr - 1);
     const net = rev * (operatingMargin / 100);
-    return { year: `Year ${yr}`, revenue: rev, netIncome: net };
+    return { year: `${t('simYear')} ${yr}`, revenue: rev, netIncome: net };
   });
 
   const maxForecastRev = Math.max(...forecastData.map((d) => d.revenue));
@@ -47,10 +47,12 @@ export default function FinancialSimulator({ language }) {
   const calculatedNetMargin = revenue > 0 ? ((netIncome / revenue) * 100).toFixed(1) : 'N/A';
 
   const formatCurrency = (val) => {
-    return new Intl.NumberFormat(language === 'en' ? 'en-US' : 'id-ID', {
+    const locale = { id: 'id-ID', en: 'en-US', zh: 'zh-CN' }[language] || 'id-ID';
+    return new Intl.NumberFormat(locale, {
       style: 'currency',
-      currency: language === 'en' ? 'USD' : 'IDR',
-      maximumFractionDigits: 0,
+      currency: 'IDR',
+      notation: 'compact',
+      maximumFractionDigits: 1,
     }).format(val);
   };
 
@@ -68,7 +70,7 @@ export default function FinancialSimulator({ language }) {
         {/* Controls Sidebar */}
         <aside className="simulator-controls">
           <div className="controls-title">
-            <h3>⚙️ {t('simHeader')}</h3>
+            <h3>{t('simHeader')}</h3>
             <span>{t('simSub')}</span>
           </div>
 
@@ -79,9 +81,9 @@ export default function FinancialSimulator({ language }) {
             </label>
             <input
               type="range"
-              min="500000"
-              max="10000000"
-              step="250000"
+              min="500000000"
+              max="10000000000"
+              step="250000000"
               value={baseRevenue}
               onChange={(e) => setBaseRevenue(Number(e.target.value))}
             />
@@ -274,7 +276,7 @@ export default function FinancialSimulator({ language }) {
                     <span>{t('ratioCurrent')}</span>
                     <strong className="ratio-score">{calculatedCurrentRatio}x</strong>
                     <span className="ratio-status">
-                      {Number(calculatedCurrentRatio) >= 1.5 ? '✅ Likuiditas Sehat (>1.5x)' : '⚠️ Likuiditas Perlu Diwaspadai (<1.5x)'}
+                      {Number(calculatedCurrentRatio) >= 1.5 ? `✓ ${t('ratioLiquidityHealthy')}` : `! ${t('ratioLiquidityWatch')}`}
                     </span>
                   </div>
 
@@ -282,7 +284,7 @@ export default function FinancialSimulator({ language }) {
                     <span>{t('ratioProfit')}</span>
                     <strong className="ratio-score">{calculatedNetMargin}%</strong>
                     <span className="ratio-status">
-                      {Number(calculatedNetMargin) >= 15 ? '✅ Margin Profit Tinggi (≥15%)' : 'ℹ️ Margin Operasional Standar'}
+                      {Number(calculatedNetMargin) >= 15 ? `✓ ${t('ratioMarginHigh')}` : `· ${t('ratioMarginStandard')}`}
                     </span>
                   </div>
                 </div>

@@ -64,7 +64,7 @@ export default function StatsBar({ stats, language }) {
               <span className="number">
                 <StatCounter target={item.target} isVisible={isVisible} />
               </span>
-              <span className="suffix">{item.suffix}</span>
+              <span className="suffix">{translate(item.suffix, language)}</span>
             </div>
             <div className="stat-label">{translate(item.label, language)}</div>
           </div>

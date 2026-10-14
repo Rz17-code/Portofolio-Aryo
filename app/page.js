@@ -43,7 +43,25 @@ const copy = {
   taxDemoEyebrow: { id: "Demo Perpajakan & Aset Interaktif", en: "Interactive Tax & Asset Demo", zh: "互动税务与资产演示" },
   taxDemoTitle: { id: "Kalkulator Pajak Indonesia & Penyusutan Fiskal", en: "Indonesian Tax & Depreciation Engine", zh: "印尼税务与折旧计算引擎" },
   taxDemoDesc: { id: "Simulasikan perhitungan PPh Pasal 21 (TER & UU HPP), PPh 22, PPh Final (PP 55/2022), serta Jadwal Penyusutan Aset Tetap berdasarkan PMK 72/2023 secara instan dalam modul Pop-up.", en: "Simulate PPh 21, PPh 22, PPh Final, and Asset Depreciation schedules instantly in a Pop-up modal.", zh: "在弹窗中即时模拟 PPh 21, 22, PPh Final 及资产折旧计划。" },
-  openTaxModal: { id: "Buka Kalkulator Pajak & Penyusutan (Pop-up) →", en: "Open Tax & Depreciation Calculator (Pop-up) →", zh: "打开税务与折旧计算器 (弹窗) →" }
+  openTaxModal: { id: "Buka Kalkulator Pajak & Penyusutan (Pop-up) →", en: "Open Tax & Depreciation Calculator (Pop-up) →", zh: "打开税务与折旧计算器 (弹窗) →" },
+  taxPills: [
+    { id: 'PPh 21 (TER & UU HPP 2021)', en: 'PPh 21 (TER & HPP Law 2021)', zh: 'PPh 21（TER 与 2021 年 HPP 法）' },
+    { id: 'PPh Final UMKM 0.5% (PP 55/2022)', en: 'MSME Final Tax 0.5% (PP 55/2022)', zh: '中小企业最终税 0.5%（PP 55/2022）' },
+    { id: 'PPh 22 & Sewa 10%', en: 'PPh 22 & 10% Rental Tax', zh: 'PPh 22 及 10% 租赁税' },
+    { id: 'Penyusutan Aset (PMK 72/2023)', en: 'Asset Depreciation (PMK 72/2023)', zh: '资产折旧（PMK 72/2023）' }
+  ],
+  cvShort: { id: 'CV', en: 'CV', zh: '简历' },
+  viewAllCerts: { id: 'Lihat semua', en: 'View all', zh: '查看全部' },
+  certBadge: { id: 'Kredensial Terverifikasi', en: 'Verified Credentials', zh: '已验证资质' },
+  certBannerTitle: { id: 'Daftar Sertifikasi Resmi & Kredensial Terverifikasi', en: 'Official Certifications & Verified Credentials', zh: '官方认证与已验证资质' },
+  certBannerDesc: {
+    id: 'Mencakup Sertifikasi Profesional BI Inspira, Microsoft Office Specialist (Excel Expert & Associate), Certiport (Pearson VUE) IT Specialist Data Analytics & Databases, serta MySkill.id Bootcamp.',
+    en: 'Includes BI Inspira professional certification, Microsoft Office Specialist (Excel Expert & Associate), Certiport (Pearson VUE) IT Specialist in Data Analytics & Databases, and the MySkill.id Bootcamp.',
+    zh: '包括 BI Inspira 专业认证、微软 Office 专家认证（Excel 专家级与初级）、Certiport（Pearson VUE）数据分析与数据库 IT 专家认证，以及 MySkill.id 训练营。'
+  },
+  openCertModal: { id: 'Buka Modul Sertifikasi & Kredensial Resmi', en: 'Open Certifications & Credentials', zh: '查看认证与资质' },
+  toastEmailCopied: { id: 'Email berhasil disalin ke papan klip!', en: 'Email copied to clipboard!', zh: '邮箱已复制到剪贴板！' },
+  toastCvDownloaded: { id: 'CV berhasil diunduh dalam format PDF!', en: 'CV downloaded successfully!', zh: '简历已成功下载！' }
 };
 
 const translate = (value, language) => (typeof value === 'object' ? value[language] || value.id : value);
@@ -145,12 +163,6 @@ export default function Home() {
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
     setActiveSection(targetId);
-    if (targetId === 'demo') {
-      setIsTaxModalOpen(true);
-    }
-    if (targetId === 'certifications') {
-      setIsCertModalOpen(true);
-    }
     const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -165,13 +177,13 @@ export default function Home() {
   const handleCopyEmail = () => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(profile.email);
-      showToast(language === 'en' ? 'Email copied to clipboard!' : 'Email berhasil disalin ke papan klip!');
+      showToast(t(copy.toastEmailCopied));
     }
   };
 
   const handleDownloadCV = () => {
     generateCV(language);
-    showToast(language === 'en' ? 'CV downloaded successfully!' : 'CV berhasil diunduh dalam format PDF!');
+    showToast(t(copy.toastCvDownloaded));
   };
 
   return (
@@ -225,12 +237,13 @@ export default function Home() {
           </nav>
           <div className="header-controls">
             <button className="cv-btn" type="button" onClick={handleDownloadCV} title={t(copy.downloadCV)}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                 <polyline points="7 10 12 15 17 10"/>
                 <line x1="12" y1="15" x2="12" y2="3"/>
               </svg>
-              {t(copy.downloadCV)}
+              <span className="cv-label-full">{t(copy.downloadCV)}</span>
+              <span className="cv-label-short" aria-hidden="true">{t(copy.cvShort)}</span>
             </button>
             <label className="language-control">
               <span className="sr-only">{t(copy.language)}</span>
@@ -241,7 +254,18 @@ export default function Home() {
               </select>
             </label>
             <button className="theme-toggle" type="button" onClick={() => setDarkMode((current) => !current)} aria-label={darkMode ? t(copy.lightMode) : t(copy.darkMode)} title={darkMode ? t(copy.lightMode) : t(copy.darkMode)}>
-              <span>{darkMode ? '☀' : '◐'}</span>
+              <span>
+                {darkMode ? (
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"/>
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+                  </svg>
+                ) : (
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                  </svg>
+                )}
+              </span>
             </button>
           </div>
         </header>
@@ -283,7 +307,7 @@ export default function Home() {
             <section><p className="side-label">{t(copy.location)}</p><p>{profile.location}</p></section>
             <section><p className="side-label">{t(copy.skills)}</p><ul className="skill-list">{skills.map((skill) => <li key={t(skill.title)}>{t(skill.title)}</li>)}</ul></section>
             <section><p className="side-label">{t(copy.education)}</p>{education.map((item) => <div className="compact-entry" key={item.institution}><strong>{t(item.degree)}</strong><span>{item.institution}</span><span>{item.date}</span></div>)}</section>
-            <section><p className="side-label">{t(copy.navCertifications)}</p>{certifications.slice(0, 3).map((item) => <div className="compact-entry" key={item.credentialId}><strong>{t(item.title)}</strong><span>{item.provider}, {item.date}</span></div>)}<button type="button" className="project-card-action" onClick={() => setIsCertModalOpen(true)}>Lihat semua ({certifications.length}) →</button></section>
+            <section><p className="side-label">{t(copy.navCertifications)}</p>{certifications.slice(0, 3).map((item) => <div className="compact-entry" key={item.credentialId}><strong>{t(item.title)}</strong><span>{item.provider}, {item.date}</span></div>)}<button type="button" className="project-card-action" onClick={() => setIsCertModalOpen(true)}>{t(copy.viewAllCerts)} ({certifications.length}) →</button></section>
           </aside>
 
           <div className="main-content">
@@ -301,10 +325,7 @@ export default function Home() {
                   <p>{t(copy.taxDemoDesc)}</p>
                 </div>
                 <div className="tax-features-pills">
-                  <span className="tax-pill">✓ PPh 21 (TER & UU HPP 2021)</span>
-                  <span className="tax-pill">✓ PPh Final UMKM 0.5% (PP 55/2022)</span>
-                  <span className="tax-pill">✓ PPh 22 & Sewa 10%</span>
-                  <span className="tax-pill">✓ Penyusutan Aset (PMK 72/2023)</span>
+                  {copy.taxPills.map((pill) => <span className="tax-pill" key={pill.id}>✓ {t(pill)}</span>)}
                 </div>
                 <button
                   type="button"
@@ -389,9 +410,9 @@ export default function Home() {
               <SectionTitle eyebrow={t(copy.certEyebrow)} title={t(copy.certTitle)} />
               <div className="tax-demo-banner">
                 <div className="tax-banner-header">
-                  <span className="modal-badge">Kredensial Terverifikasi</span>
-                  <h3>Daftar Sertifikasi Resmi & Kredensial Terverifikasi</h3>
-                  <p>Mencakup Sertifikasi Profesional BI Inspira, Microsoft Office Specialist (Excel Expert & Associate), Certiport (Pearson VUE) IT Specialist Data Analytics & Databases, serta MySkill.id Bootcamp.</p>
+                  <span className="modal-badge">{t(copy.certBadge)}</span>
+                  <h3>{t(copy.certBannerTitle)}</h3>
+                  <p>{t(copy.certBannerDesc)}</p>
                 </div>
                 <button
                   type="button"
@@ -404,7 +425,7 @@ export default function Home() {
                     <line x1="16" y1="13" x2="8" y2="13"></line>
                     <line x1="16" y1="17" x2="8" y2="17"></line>
                   </svg>
-                  Buka Modul Sertifikasi & Kredensial Resmi ({certifications.length}) →
+                  {t(copy.openCertModal)} ({certifications.length}) →
                 </button>
               </div>
             </section>

@@ -27,21 +27,21 @@ export const PORTFOLIO_CONFIG = {
             icon: "fa-business-time", 
             target: 1, 
             prefix: "", 
-            suffix: "+ Tahun", 
+            suffix: { id: "+ Tahun", en: "+ Year", zh: "+ 年" },
             label: { id: "Pengalaman Accounting & Finance", en: "Accounting & Finance Experience", zh: "财会专业工作经验" } 
         },
         { 
             icon: "fa-vault", 
             target: 5, 
             prefix: "", 
-            suffix: " Entitas", 
+            suffix: { id: " Entitas", en: " Entities", zh: " 家实体" },
             label: { id: "Entitas Bisnis Dikelola", en: "Business Entities Managed", zh: "管理的商业实体" } 
         },
         { 
             icon: "fa-percent", 
-            target: 18, 
-            prefix: "", 
-            suffix: " Miliar", 
+            target: 18,
+            prefix: "Rp",
+            suffix: { id: " Miliar", en: "B", zh: "0亿" },
             label: { id: "Arus Kas Bulanan Dikelola", en: "Monthly Cash Flow Managed", zh: "每月管理的现金流" } 
         },
         { 
@@ -293,7 +293,7 @@ export const PORTFOLIO_CONFIG = {
         }
     ],
     simulatorDefaults: {
-        baseRevenue: 3000000,
+        baseRevenue: 3000000000,
         expectedGrowth: 10,
         operatingMargin: 20
     },
@@ -347,10 +347,15 @@ export const PORTFOLIO_CONFIG = {
         simTabRatios: { id: "Kalkulator Rasio", en: "Ratios Calculator", zh: "财务比率计算器" },
         ratiosTitle: { id: "Analisis Rasio Keuangan", en: "Financial Ratios Analysis", zh: "财务比率分析" },
         ratiosDesc: { id: "Masukkan angka neraca & laba rugi untuk menghitung rasio secara langsung.", en: "Input balance sheet & income statement figures to calculate ratios instantly.", zh: "输入资产负债表及损益表数据，即时计算财务比率。" },
-        calcCa: { id: "Aset Lancar ($)", en: "Current Assets ($)", zh: "流动资产 ($)" },
-        calcCl: { id: "Liabilitas Lancar ($)", en: "Current Liabilities ($)", zh: "流动负债 ($)" },
-        calcNi: { id: "Laba Bersih ($)", en: "Net Income ($)", zh: "净利润 ($)" },
-        calcRev: { id: "Pendapatan ($)", en: "Revenue ($)", zh: "营业收入 ($)" },
+        calcCa: { id: "Aset Lancar (Rp)", en: "Current Assets (Rp)", zh: "流动资产 (Rp)" },
+        calcCl: { id: "Liabilitas Lancar (Rp)", en: "Current Liabilities (Rp)", zh: "流动负债 (Rp)" },
+        calcNi: { id: "Laba Bersih (Rp)", en: "Net Income (Rp)", zh: "净利润 (Rp)" },
+        calcRev: { id: "Pendapatan (Rp)", en: "Revenue (Rp)", zh: "营业收入 (Rp)" },
+        ratioLiquidityHealthy: { id: "Likuiditas Sehat (≥1.5x)", en: "Healthy Liquidity (≥1.5x)", zh: "流动性良好 (≥1.5x)" },
+        ratioLiquidityWatch: { id: "Likuiditas Perlu Diwaspadai (<1.5x)", en: "Liquidity Needs Attention (<1.5x)", zh: "流动性需关注 (<1.5x)" },
+        ratioMarginHigh: { id: "Margin Profit Tinggi (≥15%)", en: "High Profit Margin (≥15%)", zh: "高利润率 (≥15%)" },
+        ratioMarginStandard: { id: "Margin Operasional Standar", en: "Standard Operating Margin", zh: "标准营业利润率" },
+        simYear: { id: "Tahun", en: "Year", zh: "年份" },
         ratioCurrent: { id: "Rasio Lancar (Likuiditas)", en: "Current Ratio (Liquidity)", zh: "流动比率（流动性）" },
         ratioProfit: { id: "Margin Laba Bersih (Profitabilitas)", en: "Net Profit Margin (Profitability)", zh: "净利润率（盈利能力）" },
         simChartTitle: { id: "Proyeksi Pendapatan & Laba Bersih", en: "Revenue & Net Income Projections", zh: "营收与净利润预测" },
