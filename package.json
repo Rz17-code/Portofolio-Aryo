@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"next dev -p 3000\" \"npm.cmd --prefix ../excel-project run dev -- -p 3001\"",
+    "dev:solo": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

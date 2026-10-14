@@ -10,7 +10,6 @@ import FinancialSimulator from '../components/FinancialSimulator';
 import ContactForm from '../components/ContactForm';
 import TaxDepreciationModal from '../components/TaxDepreciationModal';
 import CertificationsModal from '../components/CertificationsModal';
-import VisitorTracker from '../components/VisitorTracker';
 import { generateCV } from '../utils/cvGenerator';
 
 const copy = {
@@ -225,7 +224,6 @@ export default function Home() {
             <a href="#contact" className={activeSection === 'contact' ? 'active' : ''} onClick={(e) => handleNavClick(e, 'contact')}>{t(copy.navContact)}</a>
           </nav>
           <div className="header-controls">
-            <VisitorTracker language={language} />
             <button className="cv-btn" type="button" onClick={handleDownloadCV} title={t(copy.downloadCV)}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -455,7 +453,6 @@ export default function Home() {
         </div>
         <footer style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
           <span>&copy; {new Date().getFullYear()} {profile.fullName}</span>
-          <VisitorTracker language={language} />
         </footer>
       </main>
     </>
