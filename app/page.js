@@ -229,7 +229,6 @@ export default function Home() {
 
         <header className="site-header">
           <a className="wordmark" href="#top" onClick={(e) => handleNavClick(e, 'top')} aria-label={profile.fullName}>{profile.shortName}</a>
-          <VisitorCounter />
           <nav aria-label="Primary navigation">
             <a href="#experience" className={activeSection === 'experience' ? 'active' : ''} onClick={(e) => handleNavClick(e, 'experience')}>{t(copy.navExperience)}</a>
             <a href="#demo" className={activeSection === 'demo' ? 'active' : ''} onClick={(e) => handleNavClick(e, 'demo')}>{t(copy.navDemo)}</a>
@@ -476,6 +475,7 @@ export default function Home() {
         </div>
         <footer style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
           <span>&copy; {new Date().getFullYear()} {profile.fullName}</span>
+          <VisitorCounter />
         </footer>
       </main>
     </>
