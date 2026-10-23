@@ -3,9 +3,9 @@
 import { useEffect, useState, useRef } from 'react';
 
 /**
- * VisitorCounter — komponen penghitung visitor unik per portofolio.
- * - Satu kunjungan per sesi browser (sessionStorage flag).
- * - Graceful fallback jika KV tidak tersedia (dev lokal tanpa env).
+ * VisitorCounter — IP-based deduplication (server-side, 24h TTL).
+ * Client hanya trigger POST sekali per mount; server yang memutuskan
+ * apakah IP ini sudah terhitung atau belum.
  */
 export default function VisitorCounter() {
   const [count, setCount] = useState(null);
@@ -17,25 +17,17 @@ export default function VisitorCounter() {
     if (hasTracked.current) return;
     hasTracked.current = true;
 
-    const alreadyVisited = sessionStorage.getItem('portfolio_visited');
-
     const track = async () => {
       try {
-        if (!alreadyVisited) {
-          // Kunjungan baru — increment
-          const res = await fetch('/api/visitor', { method: 'POST' });
-          const data = await res.json();
-          sessionStorage.setItem('portfolio_visited', '1');
+        // Server menentukan apakah IP ini sudah visit (tidak perlu sessionStorage)
+        const res = await fetch('/api/visitor', { method: 'POST' });
+        const data = await res.json();
+        if (typeof data.count === 'number') {
           setCount(data.count);
-          setIsNew(true);
-        } else {
-          // Kunjungan yang sudah ada — ambil saja
-          const res = await fetch('/api/visitor');
-          const data = await res.json();
-          setCount(data.count);
+          setIsNew(data.isNew === true);
         }
       } catch {
-        // Fallback saat dev lokal (KV belum dikonfigurasi)
+        // Fallback saat offline / dev tanpa Redis
         setCount(null);
       }
     };
@@ -43,35 +35,29 @@ export default function VisitorCounter() {
     track();
   }, []);
 
-  // Animasi angka naik saat count tereset
+  // Animasi angka naik
   useEffect(() => {
     if (count === null) return;
-    const start = animatedCount;
     const end = count;
-    if (start === end) return;
-
-    const duration = 800;
+    const duration = 900;
     const startTime = performance.now();
 
     const step = (now) => {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-      setAnimatedCount(Math.round(start + (end - start) * eased));
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setAnimatedCount(Math.round(end * eased));
       if (progress < 1) requestAnimationFrame(step);
     };
 
     requestAnimationFrame(step);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
-  // Jangan render apa-apa kalau KV tidak tersedia
   if (count === null) return null;
 
   return (
     <div
       className={`visitor-counter${isNew ? ' visitor-counter--new' : ''}`}
-      title="Total kunjungan portfolio"
+      title={isNew ? 'Kunjungan baru terhitung!' : 'Total kunjungan portfolio (IP-based, 24h)'}
       aria-label={`Portfolio dilihat ${animatedCount} kali`}
     >
       <svg
