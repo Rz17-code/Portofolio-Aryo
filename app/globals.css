@@ -226,6 +226,64 @@ a:hover {
   white-space: nowrap;
 }
 
+/* ── Visitor Counter ─────────────────────────────────────── */
+.visitor-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+}
+
+.visitor-counter:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-glow);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.visitor-counter__number {
+  font-weight: 500;
+  color: var(--ink);
+  transition: color 0.3s ease;
+}
+
+.visitor-counter:hover .visitor-counter__number {
+  color: var(--accent);
+}
+
+.visitor-counter__label {
+  opacity: 0.7;
+}
+
+/* Pulse animation for new visitors */
+@keyframes visitor-pulse {
+  0%   { box-shadow: 0 0 0 0   var(--accent-glow); }
+  50%  { box-shadow: 0 0 0 6px var(--accent-glow); }
+  100% { box-shadow: 0 0 0 0   var(--accent-glow); }
+}
+
+.visitor-counter--new {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-glow);
+  animation: visitor-pulse 1.2s ease-out 1;
+}
+
+.visitor-counter--new .visitor-counter__number {
+  color: var(--accent);
+}
+
 /* Intro Section Animations */
 .intro {
   padding: 104px 0 88px;
