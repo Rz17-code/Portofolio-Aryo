@@ -2,27 +2,29 @@ import "./globals.css";
 import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
-  title: "Rozindar Haryo Salam | Accounting, Finance & Data Analytics Portfolio",
-  description: "Portofolio Profesional Rozindar Haryo Salam - Staff Accounting & Finance dengan pengalaman mengelola 5 entitas bisnis, arus kas Rp15-20B/bulan, dan analisis 500.000+ data transaksi.",
+  title: "Rozindar Haryo Salam | Finance Officer – Account Payable",
+  description: "Portofolio Rozindar Haryo Salam, Finance Officer Account Payable: pencocokan PO, pembayaran vendor, petty cash, rekonsiliasi bank, dan pengelolaan arus kas Rp3–4,5 miliar per bulan.",
   keywords: [
     "Rozindar Haryo Salam",
-    "Accounting Staff",
+    "Finance Officer",
+    "Account Payable",
     "Finance Staff",
-    "Data Analyst",
-    "Laporan Keuangan",
+    "Rekonsiliasi Bank",
+    "Cash Flow",
+    "Petty Cash",
     "Brevet A&B",
+    "Microsoft Excel",
     "Google Looker Studio",
     "AppSheet",
     "Cilacap",
-    "Portofolio Akuntansi",
-    "Financial Controller"
+    "Portofolio Finance"
   ],
   authors: [{ name: "Rozindar Haryo Salam", url: "https://www.linkedin.com/in/rozindarharyosalam/" }],
   creator: "Rozindar Haryo Salam",
   metadataBase: new URL("https://portofolio-aryo.vercel.app"),
   openGraph: {
-    title: "Rozindar Haryo Salam | Accounting & Finance Portfolio",
-    description: "Lulusan S1 Akuntansi berpengalaman dalam Accounting, Finance, dan Data Analysis. Pengelolaan arus kas Rp15-20B/bulan & analisis 500K+ data transaksi.",
+    title: "Rozindar Haryo Salam | Finance Officer – Account Payable",
+    description: "S1 Akuntansi, Brevet A&B. Account Payable, pembayaran vendor, rekonsiliasi bank, dan arus kas Rp3–4,5 miliar per bulan.",
     url: "https://portofolio-aryo.vercel.app",
     siteName: "Rozindar Haryo Salam Portfolio",
     images: [
@@ -30,7 +32,7 @@ export const metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Rozindar Haryo Salam - Accounting & Finance Portfolio Preview",
+        alt: "Rozindar Haryo Salam, Finance Officer – Account Payable",
       },
     ],
     locale: "id_ID",
@@ -38,8 +40,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rozindar Haryo Salam | Accounting & Finance Portfolio",
-    description: "Lulusan S1 Akuntansi berpengalaman dalam Accounting, Finance, dan Data Analysis.",
+    title: "Rozindar Haryo Salam | Finance Officer – Account Payable",
+    description: "S1 Akuntansi, Brevet A&B. Account Payable, pembayaran vendor, rekonsiliasi bank, dan arus kas Rp3–4,5 miliar per bulan.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -56,10 +58,10 @@ const jsonLdData = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Rozindar Haryo Salam",
-  "jobTitle": "Staff Accounting & Finance",
+  "jobTitle": "Finance Officer – Account Payable",
   "worksFor": {
     "@type": "Organization",
-    "name": "PT Bharata International Pharmaceutical"
+    "name": "PT Bharata Pharmaceutical"
   },
   "url": "https://portofolio-aryo.vercel.app",
   "telephone": "+6281215288361",
@@ -79,11 +81,14 @@ const jsonLdData = {
     "https://www.instagram.com/rozindar.haryo/"
   ],
   "knowsAbout": [
-    "Accounting",
-    "Financial Reporting",
+    "Accounts Payable",
+    "Vendor Payments",
+    "Bank Reconciliation",
     "Cash Flow Management",
+    "Petty Cash",
     "Taxation & Brevet A/B",
     "Data Analysis",
+    "Microsoft Excel",
     "Google Looker Studio",
     "AppSheet"
   ]

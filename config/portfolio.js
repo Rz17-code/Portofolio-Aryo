@@ -3,163 +3,181 @@ export const PORTFOLIO_CONFIG = {
     profile: {
         fullName: "Rozindar Haryo Salam",
         shortName: "Project & Portofolio",
-        title: { id: "Staff Accounting & Finance", en: "Accounting & Finance Staff", zh: "会计与财务专员" },
+        title: { id: "Finance Officer – Account Payable", en: "Finance Officer – Accounts Payable", zh: "财务专员（应付账款）" },
         badgeText: {
             id: "Terbuka untuk Peluang Karier",
             en: "Open to Career Opportunities",
             zh: "寻求职业发展机会"
         },
         leadText: {
-            id: "Lulusan S1 Akuntansi dengan pengalaman dalam accounting, finance, dan data analysis di industri farmasi. Terampil menyusun laporan keuangan, mengelola arus kas, serta mengolah data menjadi insight bisnis.",
-            en: "Accounting graduate with experience in accounting, finance, and data analysis within the pharmaceutical industry. Skilled in financial reporting, cash-flow management, and turning data into business insights.",
-            zh: "会计学学士，拥有制药行业会计、财务及数据分析经验。精通财务报表编制、现金流管理及商业数据洞察挖掘。"
+            id: "Finance Officer berfokus pada Account Payable, lulusan S1 Akuntansi (IPK 3,66) dan bersertifikasi Brevet A&B, dengan pengalaman profesional lebih dari 2 tahun di bidang Finance, Accounting, dan Data Analysis. Berpengalaman menangani pencocokan PO dengan penerimaan barang, pembayaran vendor, petty cash, dan rekonsiliasi bank mingguan, serta mengelola arus kas Rp3–4,5 miliar per bulan.",
+            en: "Finance Officer focused on Accounts Payable, holding a Bachelor of Accounting (GPA 3.66) and a Brevet A&B tax certification, with over 2 years of professional experience in Finance, Accounting, and Data Analysis. Experienced in matching purchase orders with goods receipts, vendor payments, petty cash, and weekly bank reconciliations, as well as managing a monthly cash flow of IDR 3–4.5 billion.",
+            zh: "专注应付账款的财务专员，会计学学士（GPA 3.66），持有 Brevet A&B 税务认证，拥有两年以上财务、会计及数据分析工作经验。熟悉采购订单与收货单核对、供应商付款、备用金管理及每周银行对账，并管理每月30–45亿印尼盾的现金流。"
         },
         email: "haryosalam3@gmail.com",
         phone: "081215288361",
-        location: "Cilacap, Jawa Tengah",
+        location: { id: "Cilacap, Jawa Tengah", en: "Cilacap, Central Java", zh: "中爪哇省 Cilacap" },
         socials: {
             linkedin: "https://www.linkedin.com/in/rozindarharyosalam/",
             instagram: "https://www.instagram.com/rozindar.haryo/"
+        },
+        // File yang diunduh tombol "Unduh CV". Untuk memperbarui CV, timpa file di folder public/cv/.
+        // Belum ada CV versi Mandarin, jadi mode ZH memakai versi Inggris.
+        cvFiles: {
+            id: "/cv/CV_Rozindar_Haryo_Salam_AP.pdf",
+            en: "/cv/CV_Rozindar_Haryo_Salam_AP_EN.pdf",
+            zh: "/cv/CV_Rozindar_Haryo_Salam_AP_EN.pdf"
         }
     },
     stats: [
-        { 
-            icon: "fa-business-time", 
-            target: 1, 
-            prefix: "", 
-            suffix: { id: "+ Tahun", en: "+ Year", zh: "+ 年" },
-            label: { id: "Pengalaman Accounting & Finance", en: "Accounting & Finance Experience", zh: "财会专业工作经验" } 
+        {
+            icon: "fa-business-time",
+            target: 2,
+            prefix: "",
+            suffix: { id: "+ Tahun", en: "+ Years", zh: "+ 年" },
+            label: { id: "Pengalaman Finance, Accounting & Data Analysis", en: "Finance, Accounting & Data Analysis Experience", zh: "财务、会计与数据分析经验" }
         },
-        { 
-            icon: "fa-vault", 
-            target: 5, 
-            prefix: "", 
-            suffix: { id: " Entitas", en: " Entities", zh: " 家实体" },
-            label: { id: "Entitas Bisnis Dikelola", en: "Business Entities Managed", zh: "管理的商业实体" } 
+        {
+            icon: "fa-vault",
+            // "value" ditampilkan apa adanya (tanpa animasi hitung) karena berupa rentang.
+            value: { id: "3–4,5", en: "3–4.5", zh: "30–45" },
+            prefix: { id: "Rp", en: "Rp", zh: "Rp" },
+            suffix: { id: " M", en: "B", zh: "亿" },
+            label: { id: "Arus Kas Bulanan Dikelola", en: "Monthly Cash Flow Managed", zh: "每月管理的现金流" }
         },
-        { 
-            icon: "fa-percent", 
-            target: 18,
-            prefix: "Rp",
-            suffix: { id: " Miliar", en: "B", zh: "0亿" },
-            label: { id: "Arus Kas Bulanan Dikelola", en: "Monthly Cash Flow Managed", zh: "每月管理的现金流" } 
+        {
+            icon: "fa-building-columns",
+            target: 7,
+            prefix: "",
+            suffix: "",
+            label: { id: "Rekening Bank Perusahaan Dikelola", en: "Company Bank Accounts Managed", zh: "管理的公司银行账户" }
         },
-        { 
-            icon: "fa-bezier-curve", 
-            target: 500, 
-            prefix: "", 
-            suffix: "K+", 
-            label: { id: "Data Transaksi Accounting & Finance Dianalisis", en: "Accounting & Finance Records Analyzed", zh: "分析的财会交易数据" } 
+        {
+            icon: "fa-bezier-curve",
+            target: 500,
+            prefix: "",
+            suffix: "K+",
+            label: { id: "Data Penjualan Dianalisis", en: "Sales Records Analyzed", zh: "分析的销售数据" }
         }
     ],
     skills: [
         {
             icon: "fa-calculator",
-            title: { id: "Akuntansi & Keuangan", en: "Accounting & Finance", zh: "会计与财务" },
+            title: { id: "Finance & Accounting", en: "Finance & Accounting", zh: "财务与会计" },
             description: {
-                id: "Pencatatan transaksi, penyusunan jurnal, rekonsiliasi bank, serta laporan laba rugi, neraca, dan arus kas.",
-                en: "Maintaining general ledgers, accounts payable/receivable (AP/AR), bank reconciliations, and producing accurate monthly balance sheets.",
-                zh: "总账管理、应付/应收账款（AP/AR）、银行对账及准确编制月度资产负债表与损益表。"
+                id: "Account Payable, Pencocokan PO & Penerimaan Barang, Pembayaran Vendor, Petty Cash, Rekonsiliasi Bank, Pengelolaan Arus Kas",
+                en: "Accounts Payable, PO & Goods Receipt Matching, Vendor Payments, Petty Cash, Bank Reconciliation, Cash Flow Management",
+                zh: "应付账款、采购订单与收货核对、供应商付款、备用金、银行对账、现金流管理"
             }
         },
         {
-            icon: "fa-chart-pie",
-            title: { id: "Analisis Data", en: "Data Analysis", zh: "数据分析" },
+            icon: "fa-building-columns",
+            title: { id: "Internet Banking", en: "Business Internet Banking", zh: "企业网上银行" },
             description: {
-                id: "Analisis data penjualan, KPI logistik, serta dashboard operasional untuk mendukung pengambilan keputusan.",
-                en: "Developing departmental budgets, running variance analyses, and monitoring cash flow trends to prevent cost overruns.",
-                zh: "分析销售数据、物流KPI及运营仪表板，为企业管理层决策提供数据支持。"
-            }
-        },
-        {
-            icon: "fa-scale-balanced",
-            title: { id: "Perpajakan", en: "Taxation", zh: "税务管理" },
-            description: {
-                id: "Pemahaman PPh 21, 22, 23, PPh Pasal 4(2), PBB, dan Coretax melalui sertifikasi Brevet A&B.",
-                en: "Preparing corporate tax declarations (PPN, PPh), coordinating regular audit cycles, and assuring full compliance with financial laws.",
-                zh: "熟知印尼企业税法（PPh 21/22/23/4(2)、PPN及Coretax），持有Brevet A&B税务认证。"
+                id: "BNI Direct Bisnis, myBCA Bisnis, Kopra Mandiri",
+                en: "BNI Direct Bisnis, myBCA Bisnis, Kopra Mandiri",
+                zh: "BNI Direct Bisnis、myBCA Bisnis、Kopra Mandiri"
             }
         },
         {
             icon: "fa-cubes",
-            title: { id: "Pelaporan & Sistem", en: "Reporting & Systems", zh: "财务系统与报告" },
+            title: { id: "Software", en: "Software", zh: "软件工具" },
             description: {
-                id: "Microsoft Excel tingkat lanjut, Accurate, Google Looker Studio, Power BI, serta platform internet banking.",
-                en: "Highly proficient in ERP systems (SAP, NetSuite), advanced Microsoft Excel (Pivot tables, VLOOKUP, macros), and financial database tools.",
-                zh: "精通高级Microsoft Excel（数据透视表、VLOOKUP、宏）、Accurate、Google Looker Studio及网银平台。"
+                id: "Microsoft Excel (Advanced), Word, PowerPoint, Google Looker Studio, Power BI, AppSheet, Accurate (dasar)",
+                en: "Microsoft Excel (Advanced), Word, PowerPoint, Google Looker Studio, Power BI, AppSheet, Accurate (basic)",
+                zh: "Microsoft Excel（高级）、Word、PowerPoint、Google Looker Studio、Power BI、AppSheet、Accurate（基础）"
             }
         }
+    ],
+    spokenLanguages: [
+        { id: "Bahasa Indonesia (aktif)", en: "Indonesian (fluent)", zh: "印尼语（流利）" },
+        { id: "Bahasa Inggris (TOEFL ITP Prediction 487)", en: "English (TOEFL ITP Prediction 487)", zh: "英语（TOEFL ITP 模拟考试 487 分）" }
     ],
     journey: [
         {
             date: "Mar 2025 - Sekarang",
-            role: { id: "Staff Accounting & Finance", en: "Accounting & Finance Staff", zh: "会计与财务专员" },
-            company: "PT Bharata International Pharmaceutical",
-            description: {
-                id: "Mengelola proses accounting dan finance untuk 5 entitas bisnis, termasuk pencatatan transaksi, jurnal, laporan manajemen dan pajak, arus kas Rp15 - Rp20 miliar per bulan, pembayaran vendor, serta rekonsiliasi bank.",
-                en: "Managed accounting and finance processes for five business entities, including transaction recording, journals, management and tax reporting, monthly cash flow of Rp15 - Rp20 billion, vendor payments, and bank reconciliation.",
-                zh: "负责5家商业实体的会计与财务管理，包括交易记录、记账凭证、管理与税务报告、每月150-200亿印尼盾的现金流管理、供应商付款及银行对账。"
-            },
+            role: { id: "Finance Officer – Account Payable", en: "Finance Officer – Accounts Payable", zh: "财务专员（应付账款）" },
+            company: "PT Bharata Pharmaceutical",
             highlights: [
-                { id: "Menyusun laporan laba rugi, neraca, dan arus kas untuk kebutuhan manajemen, pajak, serta pelaporan tahunan.", en: "Prepared profit and loss, balance sheet, and cash-flow reports for management, tax, and annual reporting.", zh: "编制损益表、资产负债表及现金流量表，满足管理层、税务及年度报告需求。" },
-                { id: "Menjaga ketersediaan dana operasional dan posisi kas yang sehat untuk 5 entitas bisnis.", en: "Maintained operational fund availability and healthy cash positions for five business entities.", zh: "保持5家商业实体的运营资金充足及健康的现金流状况。" },
-                { id: "Memproses pembayaran vendor, biaya operasional, dan transfer dana melalui Kopra Mandiri dan BNI Direct.", en: "Processed vendor payments, operating expenses, and fund transfers through Kopra Mandiri and BNI Direct.", zh: "通过Kopra Mandiri及BNI Direct网银系统处理供应商付款、运营支出及资金转账。" },
-                { id: "Melakukan rekonsiliasi bank harian dan mingguan untuk meminimalkan selisih transaksi.", en: "Performed daily and weekly bank reconciliations to minimize transaction discrepancies.", zh: "进行每日及每周银行对账，最大程度减少交易差异。" }
+                { id: "Memproses sekitar 20 transaksi per hari melalui BNI Direct Bisnis, myBCA Bisnis, dan Kopra Mandiri tanpa pernah melewati SLA 1 jam per transaksi, sehingga capaian KPI terjaga.", en: "Process around 20 transactions per day via BNI Direct Bisnis, myBCA Bisnis, and Kopra Mandiri, never exceeding the 1-hour SLA per transaction and thereby safeguarding KPI performance.", zh: "每日通过 BNI Direct Bisnis、myBCA Bisnis 及 Kopra Mandiri 处理约20笔交易，从未超过每笔1小时的 SLA 时限，保障 KPI 达成。" },
+                { id: "Mencocokkan purchase order (PO) dengan penerimaan barang serta membayar vendor dan biaya operasional dengan memastikan ketepatan nominal dan jadwal.", en: "Match purchase orders (POs) with goods receipts and pay vendors and operating expenses, ensuring accurate amounts and on-schedule payments.", zh: "核对采购订单（PO）与收货记录，支付供应商货款及运营费用，确保金额准确、按期付款。" },
+                { id: "Mengelola arus kas Rp3–4,5 miliar per bulan pada 7 rekening perusahaan, menjaga dana operasional tetap tersedia tanpa defisit.", en: "Manage a monthly cash flow of IDR 3–4.5 billion across 7 company bank accounts, keeping operating funds available with no deficit.", zh: "管理公司7个银行账户每月30–45亿印尼盾的现金流，保持运营资金充足、无赤字。" },
+                { id: "Melakukan rekonsiliasi bank mingguan untuk meningkatkan akurasi pelaporan keuangan dan meminimalkan selisih transaksi.", en: "Perform weekly bank reconciliations to improve financial reporting accuracy and minimize transaction discrepancies.", zh: "每周进行银行对账，提升财务报告准确性并减少交易差异。" },
+                { id: "Bertanggung jawab atas petty cash Finance Rp3 juta per bulan: verifikasi nota, pencatatan, pengisian ulang, cek saldo fisik, dan pelaporan.", en: "Handle the Finance petty cash of IDR 3 million per month: receipt verification, expense recording, replenishment, physical cash counts, and reporting.", zh: "负责财务部每月300万印尼盾备用金：票据审核、记账、补充、现金实盘及报告。" }
             ],
-            tags: ["Financial Reporting", "Cash Flow", "Bank Reconciliation"]
+            tags: ["Account Payable", "Cash Flow", "Bank Reconciliation", "Petty Cash"]
         },
         {
             date: "Okt 2023 - Jul 2024",
             role: { id: "Data Analyst Staff", en: "Data Analyst Staff", zh: "数据分析专员" },
             company: "PT Ethos Kreatif Indonesia",
-            description: {
-                id: "Menganalisis lebih dari 500.000 data penjualan, mengevaluasi KPI lebih dari 10 mitra logistik, serta mengembangkan dashboard Google Looker Studio untuk produk Dexa Medica dan tim Customer Service.",
-                en: "Analyzed more than 500,000 sales records, evaluated KPIs for over 10 logistics partners, and developed Google Looker Studio dashboards for Dexa Medica products and the Customer Service team.",
-                zh: "分析超过500,000条销售数据，评估10多家物流合作伙伴的KPI，并为Dexa Medica产品及客服团队开发Google Looker Studio数据仪表板。"
-            },
             highlights: [
-                { id: "Mengolah lebih dari 500.000 data penjualan untuk memantau performa dan target harian maupun bulanan.", en: "Analyzed more than 500,000 sales records to monitor daily and monthly performance and targets.", zh: "处理超50万条销售数据，监控每日及每月业绩与目标的完成情况。" },
-                { id: "Mengevaluasi KPI pengiriman dan retur dari lebih dari 10 mitra logistik, yang membantu menurunkan return rate sekitar 3%.", en: "Evaluated delivery and return KPIs for more than 10 logistics partners, helping reduce the return rate by around 3%.", zh: "评估10多家物流商的发货及退货KPI，助力退货率降低约3%。" },
-                { id: "Membangun Daily Sales Dashboard di Google Looker Studio untuk lebih dari 10 produk Dexa Medica.", en: "Built a Daily Sales Dashboard in Google Looker Studio for more than 10 Dexa Medica products.", zh: "在Google Looker Studio中为10多款Dexa Medica产品构建每日销售仪表板。" },
-                { id: "Mengoptimalkan dashboard per Customer Service dan mendukung peningkatan penjualan rata-rata 8% per Customer Service.", en: "Optimized Customer Service dashboards and supported an average 8% increase in sales per Customer Service representative.", zh: "优化客服个人看板，支持每位客服代表平均销售额提升8%。" }
+                { id: "Menganalisis lebih dari 500.000 data penjualan untuk menghasilkan insight performa penjualan serta pencapaian target harian dan bulanan bagi manajemen.", en: "Analyzed more than 500,000 sales records to provide management with insights on sales performance and daily and monthly target achievement.", zh: "分析超过50万条销售数据，为管理层提供销售业绩及每日、每月目标达成情况的洞察。" },
+                { id: "Mengevaluasi lebih dari 10 mitra logistik (3PL) melalui analisis KPI pengiriman dan retur, membantu menurunkan return rate sekitar 3%.", en: "Evaluated more than 10 third-party logistics (3PL) partners through delivery and return KPI analysis, helping reduce the return rate by about 3%.", zh: "通过配送与退货 KPI 分析评估10多家第三方物流（3PL）合作伙伴，助力退货率降低约3%。" },
+                { id: "Mengembangkan Daily Sales Dashboard untuk lebih dari 10 produk Dexa Medica di Google Looker Studio, serta mengoptimalkan dashboard per Customer Service yang berkontribusi pada kenaikan penjualan rata-rata 8% per Customer Service.", en: "Developed a Daily Sales Dashboard in Google Looker Studio for more than 10 Dexa Medica products, and optimized the per-Customer Service dashboard, contributing to an average 8% sales increase per Customer Service representative.", zh: "在 Google Looker Studio 中为10多款 Dexa Medica 产品开发每日销售仪表板，并优化各客服人员看板，助力每位客服销售额平均提升8%。" }
             ],
             tags: ["Data Analysis", "Google Looker Studio", "KPI Monitoring"]
         }
     ],
+    organization: [
+        {
+            date: "Jan 2022 - Sep 2022",
+            role: { id: "Menteri Luar Negeri", en: "Minister of External Affairs", zh: "对外联络部部长" },
+            company: { id: "Badan Eksekutif Mahasiswa FEB UMP", en: "Student Executive Board, FEB UMP", zh: "UMP 经济与商学院学生会" },
+            highlights: [
+                { id: "Memimpin tim beranggotakan 7 orang dan menyelesaikan lebih dari 8 program kerja.", en: "Led a team of 7 and completed more than 8 work programs.", zh: "带领7人团队，完成8项以上工作计划。" },
+                { id: "Menjalin kolaborasi dengan 5+ UMKM lokal dan kemitraan dengan 7+ BEM FEB lintas universitas.", en: "Built collaborations with 5+ local MSMEs and partnerships with 7+ economics and business student boards across universities.", zh: "与5家以上本地中小微企业开展合作，并与7所以上高校的经济与商学院学生会建立合作关系。" }
+            ]
+        }
+    ],
     projects: [
+        {
+            id: "fincon",
+            categoryGroup: "software",
+            icon: "fa-calculator",
+            title: {
+                id: "Fincon – Financial Consolidation",
+                en: "Fincon – Financial Consolidation",
+                zh: "Fincon – 财务合并系统"
+            },
+            category: { id: "Proyek 2026", en: "2026 Project", zh: "2026年项目" },
+            metric: "Supabase • Vercel",
+            description: {
+                id: "Merancang dan membangun aplikasi web pencatatan arus kas untuk perusahaan dagang menggunakan Supabase dan Vercel.",
+                en: "Designed and built a web application for cash flow recording in trading companies using Supabase and Vercel.",
+                zh: "使用 Supabase 与 Vercel，为贸易公司设计并开发现金流记录网络应用。"
+            },
+            tags: ["Next.js", "Supabase", "Vercel", "Cash Flow"],
+            tools: ["Next.js", "Supabase", "Vercel"]
+        },
         {
             id: "cashflow-dashboard",
             categoryGroup: "accounting",
             icon: "fa-chart-line",
             title: {
                 id: "Dashboard Cashflow Monitoring Multi Entitas Bisnis",
-                en: "Multi-Entity Cash-Flow Monitoring Dashboard",
+                en: "Multi-Entity Cash Flow Monitoring Dashboard",
                 zh: "多实体现金流监控仪表板"
             },
             category: { id: "Proyek 2025", en: "2025 Project", zh: "2025年项目" },
-            metric: { id: "5 Entitas • Rp15 - 20M/Bln", en: "5 Entities • Rp15 - 20B/Mo", zh: "5家实体 • 月现金流150-200亿" },
+            metric: "AppSheet • Looker Studio",
             description: {
                 id: "Membangun dashboard monitoring arus kas untuk bisnis multi entitas menggunakan AppSheet dan Google Looker Studio untuk memantau kas harian secara akurat.",
                 en: "Built a multi-entity cash-flow monitoring dashboard using AppSheet and Google Looker Studio to track daily cash flow accurately.",
                 zh: "利用AppSheet和Google Looker Studio构建多实体现金流监控看板，精准掌握每日资金动态。"
             },
-            tags: ["AppSheet", "Google Looker Studio", "Cash Flow", "Multi-Entity Consolidation"],
+            tags: ["AppSheet", "Google Looker Studio", "Cash Flow", "Multi-Entity"],
             problem: {
-                id: "Pencatatan arus kas di 5 entitas bisnis dilakukan terpisah sehingga manajemen kesulitan memantau posisi kas secara harian. Hal ini menimbulkan keterlambatan keputusan alokasi dana operasional dan risiko selisih rekonsiliasi.",
-                en: "Cash flow recording across 5 business entities was fragmented, making daily cash position monitoring difficult. This led to operational fund allocation delays and reconciliation discrepancy risks.",
-                zh: "5家实体的现金流记录相互分散，导致管理层难以每日追踪资金状况，造成运营资金分配延迟及对账差异风险。"
+                id: "Pencatatan arus kas antar entitas bisnis dilakukan terpisah sehingga manajemen kesulitan memantau posisi kas secara harian. Hal ini menimbulkan keterlambatan keputusan alokasi dana operasional dan risiko selisih rekonsiliasi.",
+                en: "Cash flow records were kept separately for each business entity, making the daily cash position hard to monitor. This led to operational fund allocation delays and reconciliation discrepancy risks.",
+                zh: "各业务实体的现金流记录相互分散，导致管理层难以每日追踪资金状况，造成运营资金分配延迟及对账差异风险。"
             },
             solution: {
                 id: "Mengintegrasikan input data transaksi melalui aplikasi mobile AppSheet dengan database Google Sheets yang terhubung langsung ke dashboard analitis Google Looker Studio untuk pemantauan arus kas terpusat.",
                 en: "Integrated transaction data entry via AppSheet mobile app with Google Sheets database connected directly to Google Looker Studio analytical dashboard for centralized cash flow monitoring.",
                 zh: "通过AppSheet移动端接入交易数据，直连Google Sheets数据库与Google Looker Studio分析看板，实现集中化现金流监控。"
             },
-            impact: [
-                { id: "100% visibilitas arus kas harian untuk 5 entitas bisnis (total arus kas Rp15 - Rp20 Miliar/bulan).", en: "100% daily cash flow visibility across 5 business entities (total cash flow Rp15 - Rp20 Billion/month).", zh: "实现5家实体每日现金流100%可视化（月现金流150-200亿印尼盾）。" },
-                { id: "Memangkas waktu penyusunan laporan posisi kas harian dari 3 hari menjadi otomatis & real-time.", en: "Cut daily cash position report generation time from 3 days to automated & real-time.", zh: "将每日资金状况报告编制时间从3天缩短为实时自动生成。" },
-                { id: "Meminimalkan risiko selisih transaksi dan mengoptimalkan pembayaran vendor harian.", en: "Minimized transaction discrepancies and optimized daily vendor payment schedules.", zh: "最大程度减少交易对账差异，优化每日供应商付款计划。" }
-            ],
-            tools: ["AppSheet", "Google Looker Studio", "Google Sheets API", "BNI Direct / Kopra Mandiri Data"],
+            tools: ["AppSheet", "Google Looker Studio", "Google Sheets"],
             documentation: {
                 image: "/projects/cashflow-dashboard-demo.png",
                 alt: { id: "Contoh dashboard pemantauan arus kas multi entitas dengan data dummy", en: "Example of a multi-entity cash-flow monitoring dashboard with dummy data", zh: "多实体现金流监控看板示例（模拟数据）" },
@@ -199,45 +217,6 @@ export const PORTFOLIO_CONFIG = {
                 { id: "Memvisualisasikan tren penjualan harian & bulanan untuk 10+ produk Dexa Medica.", en: "Visualized daily & monthly sales trends for 10+ Dexa Medica products.", zh: "实现10多款Dexa Medica产品每日及每月销售趋势可视化。" }
             ],
             tools: ["Google Looker Studio", "Microsoft Excel (Advanced Formulas)", "SQL / Large Dataset Processing"]
-        },
-        {
-            id: "consolidated-accounting-system",
-            categoryGroup: "software",
-            icon: "fa-calculator",
-            title: {
-                id: "Sistem Akuntansi Konsolidasi Multi-Entitas (40 Entitas CV)",
-                en: "Multi-Entity Consolidated Accounting Web System (40 Entities)",
-                zh: "多实体合并会计网络系统（40家企业实体）"
-            },
-            category: { id: "Proyek Software Akuntansi", en: "Accounting Web App", zh: "财会软件项目" },
-            metric: { id: "40 Entitas CV • Combined Assets Rp16,0B", en: "40 CV Entities • Combined Assets Rp16.0B", zh: "40家企业 • 合并总资产160亿" },
-            description: {
-                id: "Merancang dan membangun aplikasi web sistem akuntansi konsolidasi untuk mengelola pencatatan jurnal, buku besar, serta mengonsolidasikan laporan keuangan dari 40 entitas bisnis (CV) secara real-time.",
-                en: "Designed and built a consolidated web accounting system application to manage journal entries, ledgers, and consolidate financial statements across 40 business entities in real-time.",
-                zh: "设计并开发多实体合并会计网络系统，实现40家商业实体的记账凭证、总账及财务报表实时合并。"
-            },
-            tags: ["Accounting System", "Multi-Entity Consolidation", "Next.js / React", "General Ledger", "Financial Statements"],
-            problem: {
-                id: "Pengelolaan pencatatan akuntansi untuk 40 entitas bisnis (CV) secara terpisah sangat rentan kesalahan selisih transaksi, lambat dalam konsolidasi gabungan aset (Rp16,0B+), dan menyulitkan evaluasi profitabilitas per entitas.",
-                en: "Managing accounting records across 40 separate business entities (CVs) carried high transaction discrepancy risks, delayed combined asset consolidation (Rp16.0B+), and complicated profitability tracking per entity.",
-                zh: "独立管理40家企业的财务极易产生账目对账错误，且合并160多亿总资产速度缓慢，难以评估单家实体的盈利能力。"
-            },
-            solution: {
-                id: "Membangun Web App Sistem Akuntansi Konsolidasi dengan modul Jurnal Kas, Utang, Piutang, Umum, Penyesuaian, Saldo Awal COA, Buku Besar, dan Dashboard Pemantauan Performa Laba/Rugi per CV berbasis data dummy terenkripsi.",
-                en: "Built a Consolidated Accounting Web System with Cash/AP/AR/General/Adjusting Journal modules, COA Opening Balances, Ledgers, and Entity Profitability Analytics Dashboard using encrypted dummy data.",
-                zh: "开发合并会计Web系统，包含现金凭证、应付、应收、通用、期末调整凭证、科目初始余额、总账及各实体损益看板。"
-            },
-            impact: [
-                { id: "Mengonsolidasikan performa keuangan & total gabungan aset Rp16,0+ Miliar dari 40 entitas bisnis CV secara otomatis.", en: "Automated financial consolidation & combined assets of Rp16.0+ Billion across 40 business entities.", zh: "自动合并40家企业的财务绩效及160多亿印尼盾的总资产。" },
-                { id: "Memantau total omset Rp1,33B+ dan laba bersih Rp310M+ harian secara terpusat dengan akurasi 100%.", en: "Centralized daily tracking of Rp1.33B+ revenue and Rp310M+ net income with 100% accuracy.", zh: "集中监控日营业额13.3亿+及净利润3.1亿+，准确率达100%。" },
-                { id: "Menyediakan modul jurnal kas, piutang, utang, penyesuaian, dan eliminasi transaksi inter-company secara transparan.", en: "Provided cash, AR, AP, adjusting, and inter-company elimination journal modules transparently.", zh: "提供透明的现金、应收、应付、调整及内部交易消除凭证模块。" }
-            ],
-            tools: ["Next.js / React", "JavaScript", "Tailwind CSS / Glassmorphism UI", "COA & Financial Accounting Engine"],
-            documentation: {
-                image: "/projects/accounting-system-demo.png",
-                alt: { id: "Tampilan Sistem Akuntansi Konsolidasi Multi-Entitas 40 CV", en: "Multi-Entity Consolidated Accounting System UI", zh: "40家实体合并会计系统界面" },
-                caption: { id: "Dokumentasi antarmuka dashboard sistem akuntansi konsolidasi memantau aset Rp16,0B+ dan performa laba/rugi 40 CV (Data Dummy disimulasikan).", en: "Interface documentation of consolidated accounting dashboard tracking Rp16.0B+ assets and 40 CV P&L performance (Simulated Dummy Data).", zh: "合并会计系统看板界面文档，监控160亿+资产及40家实体损益（模拟数据）。" }
-            }
         }
     ],
     education: [
@@ -245,22 +224,36 @@ export const PORTFOLIO_CONFIG = {
             degree: { id: "S1 Akuntansi", en: "Bachelor of Accounting", zh: "会计学学士" },
             institution: "Universitas Muhammadiyah Purwokerto",
             date: "Sep 2019 - Sep 2023",
-            gpa: "IPK: 3,66 / 4,00"
+            gpa: { id: "IPK 3,66 / 4,00", en: "GPA 3.66 / 4.00", zh: "GPA 3.66 / 4.00" }
         }
     ],
     certifications: [
+        {
+            title: { id: "Brevet Pajak A & B", en: "Brevet Tax A & B", zh: "Brevet A & B 税务专业认证" },
+            provider: "BI Inspira",
+            date: "2024",
+            credentialId: "PPh 21, 22, 23, 4(2), PBB, Coretax",
+            pdfUrl: null
+        },
+        {
+            title: { id: "Microsoft Office Specialist: Excel 2019 Expert", en: "Microsoft Office Specialist: Excel 2019 Expert", zh: "微软 Excel 2019 专家级认证" },
+            provider: "Microsoft (Certiport)",
+            date: "4 Okt 2022",
+            credentialId: "ID: rwb9-uSJ4 (Certiport Verified)",
+            pdfUrl: "/certificates/cert-excel-expert.pdf"
+        },
+        {
+            title: { id: "Microsoft Office Specialist: Excel 2019 Associate", en: "Microsoft Office Specialist: Excel 2019 Associate", zh: "微软 Excel 2019 初级专业认证" },
+            provider: "Microsoft (Certiport)",
+            date: "8 Sep 2022",
+            credentialId: "ID: Pzmh-uSRY (Certiport Verified)",
+            pdfUrl: "/certificates/cert-excel-associate.pdf"
+        },
         {
             title: { id: "Bootcamp Finance, Accounting, Tax, & Audit", en: "Finance, Accounting, Tax, & Audit Bootcamp", zh: "财务、会计、税务与审计训练营" },
             provider: "MySkill.id",
             date: "Agt 2025",
             credentialId: "Financial Reporting, Taxation & Auditing",
-            pdfUrl: null
-        },
-        {
-            title: { id: "Brevet Pajak A & B", en: "Brevet Tax A & B", zh: "Brevet A & B 税务专业认证" },
-            provider: "BI Inspira",
-            date: "2024",
-            credentialId: "PPh, PBB, dan Coretax",
             pdfUrl: null
         },
         {
@@ -276,20 +269,6 @@ export const PORTFOLIO_CONFIG = {
             date: "18 Okt 2022",
             credentialId: "ID: nEsY-DwzP (Certiport Verified)",
             pdfUrl: "/certificates/cert-databases.pdf"
-        },
-        {
-            title: { id: "Microsoft Office Specialist: Excel 2019 Expert", en: "Microsoft Office Specialist: Excel 2019 Expert", zh: "微软 Excel 2019 专家级认证" },
-            provider: "Microsoft (Certiport)",
-            date: "4 Okt 2022",
-            credentialId: "ID: rwb9-uSJ4 (Certiport Verified)",
-            pdfUrl: "/certificates/cert-excel-expert.pdf"
-        },
-        {
-            title: { id: "Microsoft Office Specialist: Excel 2019 Associate", en: "Microsoft Office Specialist: Excel 2019 Associate", zh: "微软 Excel 2019 初级专业认证" },
-            provider: "Microsoft (Certiport)",
-            date: "8 Sep 2022",
-            credentialId: "ID: Pzmh-uSRY (Certiport Verified)",
-            pdfUrl: "/certificates/cert-excel-associate.pdf"
         }
     ],
     simulatorDefaults: {

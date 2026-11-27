@@ -1480,6 +1480,9 @@ footer {
   .header-controls .cv-btn { padding: 0 10px; height: 32px; }
   .cv-label-full { display: none; }
   .cv-label-short { display: inline; }
+  .stat-value { font-size: clamp(18px, 5.6vw, 26px); white-space: nowrap; }
+  .project-heading { flex-wrap: wrap; gap: 8px; }
+  .project-heading strong { white-space: normal; }
 }
 
 @media (max-width: 430px) {

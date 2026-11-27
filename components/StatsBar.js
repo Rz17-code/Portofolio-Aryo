@@ -60,9 +60,9 @@ export default function StatsBar({ stats, language }) {
         {stats.map((item, idx) => (
           <div className="stat-card" key={idx}>
             <div className="stat-value">
-              <span className="prefix">{item.prefix}</span>
+              <span className="prefix">{translate(item.prefix, language)}</span>
               <span className="number">
-                <StatCounter target={item.target} isVisible={isVisible} />
+                {item.value ? translate(item.value, language) : <StatCounter target={item.target} isVisible={isVisible} />}
               </span>
               <span className="suffix">{translate(item.suffix, language)}</span>
             </div>

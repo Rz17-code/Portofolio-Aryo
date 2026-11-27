@@ -11,7 +11,6 @@ import ContactForm from '../components/ContactForm';
 import TaxDepreciationModal from '../components/TaxDepreciationModal';
 import CertificationsModal from '../components/CertificationsModal';
 import VisitorCounter from '../components/VisitorCounter';
-import { generateCV } from '../utils/cvGenerator';
 
 const copy = {
   navExperience: { id: 'Pengalaman', en: 'Experience', zh: '工作经历' },
@@ -27,11 +26,14 @@ const copy = {
   education: { id: 'Pendidikan', en: 'Education', zh: '学历背景' },
   careerEyebrow: { id: 'Riwayat karier', en: 'Career history', zh: '职业履历' },
   careerTitle: { id: 'Pengalaman profesional', en: 'Professional experience', zh: '专业工作经验' },
+  orgEyebrow: { id: 'Kepemimpinan', en: 'Leadership', zh: '领导力' },
+  orgTitle: { id: 'Pengalaman organisasi', en: 'Organizational experience', zh: '组织经历' },
+  spokenLanguages: { id: 'Bahasa', en: 'Languages', zh: '语言能力' },
   projectEyebrow: { id: 'Pilihan karya', en: 'Selected work', zh: '精选项目' },
   projectTitle: { id: 'Proyek dan dampak', en: 'Projects and impact', zh: '项目实践与成果' },
   certEyebrow: { id: 'Pengembangan profesional', en: 'Professional development', zh: '职业发展' },
   certTitle: { id: 'Sertifikasi', en: 'Certifications', zh: '专业证书' },
-  contactLead: { id: 'Terbuka untuk peran akuntansi, keuangan, dan konsultasi.', en: 'Open to accounting, finance, and consulting opportunities.', zh: "诚求财务、会计及商业咨询相关工作机会。" },
+  contactLead: { id: 'Terbuka untuk peran Account Payable, finance, dan accounting.', en: 'Open to accounts payable, finance, and accounting opportunities.', zh: "诚求应付账款、财务及会计相关工作机会。" },
   whatsapp: { id: 'WhatsApp', en: 'WhatsApp', zh: 'WhatsApp 电话' },
   language: { id: 'Bahasa', en: 'Language', zh: '语言选择' },
   lightMode: { id: 'Aktifkan mode terang', en: 'Enable light mode', zh: '切换浅色模式' },
@@ -62,19 +64,41 @@ const copy = {
   },
   openCertModal: { id: 'Buka Modul Sertifikasi & Kredensial Resmi', en: 'Open Certifications & Credentials', zh: '查看认证与资质' },
   toastEmailCopied: { id: 'Email berhasil disalin ke papan klip!', en: 'Email copied to clipboard!', zh: '邮箱已复制到剪贴板！' },
-  toastCvDownloaded: { id: 'CV berhasil diunduh dalam format PDF!', en: 'CV downloaded successfully!', zh: '简历已成功下载！' }
+  toastCvDownloaded: { id: 'CV berhasil diunduh dalam format PDF!', en: 'CV downloaded successfully!', zh: '简历（英文版 PDF）已下载！' }
 };
 
 const translate = (value, language) => (typeof value === 'object' ? value[language] || value.id : value);
+// Tanggal di config ditulis dalam bahasa Indonesia, mis. "Okt 2023 - Jul 2024".
+const MONTHS_ID = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agt', 'Sep', 'Okt', 'Nov', 'Des'];
+const MONTHS_EN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const MONTH_YEAR = new RegExp(`\\b(${MONTHS_ID.join('|')}) (\\d{4})`, 'g');
 const displayDate = (date, language) => {
   if (language === 'zh') {
-    return date.replace('Mar 2025 - Sekarang', '2025年3月 - 至今').replace('Okt 2023 - Jul 2024', '2023年10月 - 2024年7月');
+    return date.replace(MONTH_YEAR, (_, month, year) => `${year}年${MONTHS_ID.indexOf(month) + 1}月`).replace('Sekarang', '至今');
   }
-  return language === 'en' ? date.replace('Sekarang', 'Present').replace('Okt', 'Oct') : date;
+  if (language === 'en') {
+    return date.replace(MONTH_YEAR, (_, month, year) => `${MONTHS_EN[MONTHS_ID.indexOf(month)]} ${year}`).replace('Sekarang', 'Present');
+  }
+  return date;
 };
 
 function SectionTitle({ eyebrow, title }) {
   return <div className="section-title"><p>{eyebrow}</p><h2>{title}</h2></div>;
+}
+
+function TimelineItem({ item, language, tagsLabel }) {
+  const t = (value) => translate(value, language);
+  return (
+    <article className="timeline-item">
+      <p className="period">{displayDate(item.date, language)}</p>
+      <div>
+        <h3>{t(item.role)}</h3>
+        <p className="company">{t(item.company)}</p>
+        <ul className="highlights">{item.highlights.map((highlight) => <li key={highlight.id}>{t(highlight)}</li>)}</ul>
+        {item.tags && <ul className="tags" aria-label={tagsLabel}>{item.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>}
+      </div>
+    </article>
+  );
 }
 
 export default function Home() {
@@ -88,7 +112,7 @@ export default function Home() {
   const [toastMessage, setToastMessage] = useState('');
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  const { profile, stats, skills, journey, projects, education, certifications } = PORTFOLIO_CONFIG;
+  const { profile, stats, skills, spokenLanguages, journey, organization, projects, education, certifications } = PORTFOLIO_CONFIG;
   const t = (value) => translate(value, language);
 
   const filteredProjects = selectedCategory === 'all'
@@ -183,7 +207,10 @@ export default function Home() {
   };
 
   const handleDownloadCV = () => {
-    generateCV(language);
+    const link = document.createElement('a');
+    link.href = t(profile.cvFiles);
+    link.download = '';
+    link.click();
     showToast(t(copy.toastCvDownloaded));
   };
 
@@ -305,16 +332,22 @@ export default function Home() {
 
         <div className="content-grid">
           <aside className="profile-sidebar reveal">
-            <section><p className="side-label">{t(copy.location)}</p><p>{profile.location}</p></section>
-            <section><p className="side-label">{t(copy.skills)}</p><ul className="skill-list">{skills.map((skill) => <li key={t(skill.title)}>{t(skill.title)}</li>)}</ul></section>
-            <section><p className="side-label">{t(copy.education)}</p>{education.map((item) => <div className="compact-entry" key={item.institution}><strong>{t(item.degree)}</strong><span>{item.institution}</span><span>{item.date}</span></div>)}</section>
+            <section><p className="side-label">{t(copy.location)}</p><p>{t(profile.location)}</p></section>
+            <section><p className="side-label">{t(copy.skills)}</p>{skills.map((skill) => <div className="compact-entry" key={skill.title.id}><strong>{t(skill.title)}</strong><span>{t(skill.description)}</span></div>)}</section>
+            <section><p className="side-label">{t(copy.spokenLanguages)}</p><ul className="skill-list">{spokenLanguages.map((item) => <li key={item.id}>{t(item)}</li>)}</ul></section>
+            <section><p className="side-label">{t(copy.education)}</p>{education.map((item) => <div className="compact-entry" key={item.institution}><strong>{t(item.degree)}</strong><span>{item.institution}</span><span>{displayDate(item.date, language)}</span><span>{t(item.gpa)}</span></div>)}</section>
             <section><p className="side-label">{t(copy.navCertifications)}</p>{certifications.slice(0, 3).map((item) => <div className="compact-entry" key={item.credentialId}><strong>{t(item.title)}</strong><span>{item.provider}, {item.date}</span></div>)}<button type="button" className="project-card-action" onClick={() => setIsCertModalOpen(true)}>{t(copy.viewAllCerts)} ({certifications.length}) →</button></section>
           </aside>
 
           <div className="main-content">
             <section id="experience" className="content-section reveal">
               <SectionTitle eyebrow={t(copy.careerEyebrow)} title={t(copy.careerTitle)} />
-              <div className="timeline">{journey.map((job) => <article className="timeline-item" key={`${job.company}-${job.date}`}><p className="period">{displayDate(job.date, language)}</p><div><h3>{t(job.role)}</h3><p className="company">{job.company}</p><p className="description">{t(job.description)}</p><ul className="highlights">{job.highlights.map((highlight) => <li key={t(highlight)}>{t(highlight)}</li>)}</ul><ul className="tags" aria-label={t(copy.skills)}>{job.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul></div></article>)}</div>
+              <div className="timeline">{journey.map((job) => <TimelineItem item={job} language={language} tagsLabel={t(copy.skills)} key={job.date} />)}</div>
+
+              <div style={{ marginTop: '48px' }}>
+                <SectionTitle eyebrow={t(copy.orgEyebrow)} title={t(copy.orgTitle)} />
+                <div className="timeline">{organization.map((item) => <TimelineItem item={item} language={language} key={item.date} />)}</div>
+              </div>
             </section>
 
             {/* Financial Simulator & Tax Calculator Interactive Demo Section */}
