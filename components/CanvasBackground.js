@@ -12,10 +12,13 @@ export default function CanvasBackground() {
     const ctx = canvas.getContext('2d');
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
+    // Pengguna yang mematikan animasi di perangkatnya hanya mendapat gambar diam.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const handleResize = () => {
       width = (canvas.width = window.innerWidth);
       height = (canvas.height = window.innerHeight);
+      if (reduceMotion) animateParticles();
     };
 
     window.addEventListener('resize', handleResize);
@@ -112,7 +115,7 @@ export default function CanvasBackground() {
         }
       }
 
-      animationFrameId = requestAnimationFrame(animateParticles);
+      if (!reduceMotion) animationFrameId = requestAnimationFrame(animateParticles);
     }
 
     animateParticles();

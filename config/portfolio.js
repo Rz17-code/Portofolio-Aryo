@@ -39,8 +39,8 @@ export const PORTFOLIO_CONFIG = {
         },
         {
             icon: "fa-vault",
-            // "value" ditampilkan apa adanya (tanpa animasi hitung) karena berupa rentang.
-            value: { id: "3–4,5", en: "3–4.5", zh: "30–45" },
+            // Rentang [dari, sampai]; versi Mandarin memakai satuan 亿 (100 juta).
+            target: { id: [3, 4.5], en: [3, 4.5], zh: [30, 45] },
             prefix: { id: "Rp", en: "Rp", zh: "Rp" },
             suffix: { id: " M", en: "B", zh: "亿" },
             label: { id: "Arus Kas Bulanan Dikelola", en: "Monthly Cash Flow Managed", zh: "每月管理的现金流" }

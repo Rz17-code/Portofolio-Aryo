@@ -11,6 +11,7 @@ import ContactForm from '../components/ContactForm';
 import TaxDepreciationModal from '../components/TaxDepreciationModal';
 import CertificationsModal from '../components/CertificationsModal';
 import VisitorCounter from '../components/VisitorCounter';
+import ApWorkflow from '../components/ApWorkflow';
 
 const copy = {
   navExperience: { id: 'Pengalaman', en: 'Experience', zh: '工作经历' },
@@ -83,13 +84,13 @@ const displayDate = (date, language) => {
 };
 
 function SectionTitle({ eyebrow, title }) {
-  return <div className="section-title"><p>{eyebrow}</p><h2>{title}</h2></div>;
+  return <div className="section-title reveal-item"><p>{eyebrow}</p><h2>{title}</h2></div>;
 }
 
 function TimelineItem({ item, language, tagsLabel }) {
   const t = (value) => translate(value, language);
   return (
-    <article className="timeline-item">
+    <article className="timeline-item reveal-item">
       <p className="period">{displayDate(item.date, language)}</p>
       <div>
         <h3>{t(item.role)}</h3>
@@ -165,25 +166,30 @@ export default function Home() {
 
     sections.forEach((section) => observer.observe(section));
 
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    revealElements.forEach((el) => revealObserver.observe(el));
-
     return () => {
       sections.forEach((section) => observer.unobserve(section));
-      revealElements.forEach((el) => revealObserver.unobserve(el));
     };
   }, []);
+
+  // Animasi muncul saat di-scroll. Dijalankan ulang saat filter atau bahasa berganti
+  // supaya kartu yang baru dirender ikut diamati.
+  useEffect(() => {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.filter((entry) => entry.isIntersecting).forEach((entry, order) => {
+          // Elemen yang masuk bersamaan muncul bergantian.
+          entry.target.style.animationDelay = `${order * 90}ms`;
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    document.querySelectorAll('.reveal-item:not(.is-visible)').forEach((el) => revealObserver.observe(el));
+
+    return () => revealObserver.disconnect();
+  }, [language, selectedCategory]);
 
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
@@ -298,49 +304,52 @@ export default function Home() {
           </div>
         </header>
 
-        <section className="intro reveal" id="top">
-          <p className="availability">{t(profile.badgeText)}</p>
-          <h1>{profile.fullName}</h1>
-          <p className="role">{t(profile.title)}</p>
-          <p className="summary">{t(profile.leadText)}</p>
-          <div className="intro-links">
-            <a className="primary-link" href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>{t(copy.contactMe)} <span aria-hidden="true">&rarr;</span></a>
-            <button className="social-pill-btn" type="button" onClick={handleCopyEmail}>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-              </svg>
-              <span>{t(copy.copyEmail)}</span>
-            </button>
-            <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" className="social-pill-btn">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.78a1.6 1.6 0 1 0 1.6 1.6 1.6 1.6 0 0 0-1.6-1.6Z"/>
-              </svg>
-              <span>LinkedIn</span>
-            </a>
-            <a href={profile.socials.instagram} target="_blank" rel="noreferrer" className="social-pill-btn">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-              <span>Instagram</span>
-            </a>
-          </div>
+        <section className="intro" id="top">
+          <div className="hero-main">
+            <p className="availability">{t(profile.badgeText)}</p>
+            <h1>{profile.fullName}</h1>
+            <p className="role">{t(profile.title)}</p>
+            <p className="summary">{t(profile.leadText)}</p>
+            <div className="intro-links">
+              <a className="primary-link" href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>{t(copy.contactMe)} <span aria-hidden="true">&rarr;</span></a>
+              <button className="social-pill-btn" type="button" onClick={handleCopyEmail}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>{t(copy.copyEmail)}</span>
+              </button>
+              <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" className="social-pill-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.78a1.6 1.6 0 1 0 1.6 1.6 1.6 1.6 0 0 0-1.6-1.6Z"/>
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+              <a href={profile.socials.instagram} target="_blank" rel="noreferrer" className="social-pill-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                <span>Instagram</span>
+              </a>
+            </div>
 
-          {/* Hero Impact Stats Counter Bar */}
-          <StatsBar stats={stats} language={language} />
+            {/* Hero Impact Stats Counter Bar */}
+            <StatsBar stats={stats} language={language} />
+          </div>
+          <ApWorkflow language={language} />
         </section>
 
         <div className="content-grid">
-          <aside className="profile-sidebar reveal">
-            <section><p className="side-label">{t(copy.location)}</p><p>{t(profile.location)}</p></section>
-            <section><p className="side-label">{t(copy.skills)}</p>{skills.map((skill) => <div className="compact-entry" key={skill.title.id}><strong>{t(skill.title)}</strong><span>{t(skill.description)}</span></div>)}</section>
-            <section><p className="side-label">{t(copy.spokenLanguages)}</p><ul className="skill-list">{spokenLanguages.map((item) => <li key={item.id}>{t(item)}</li>)}</ul></section>
-            <section><p className="side-label">{t(copy.education)}</p>{education.map((item) => <div className="compact-entry" key={item.institution}><strong>{t(item.degree)}</strong><span>{item.institution}</span><span>{displayDate(item.date, language)}</span><span>{t(item.gpa)}</span></div>)}</section>
-            <section><p className="side-label">{t(copy.navCertifications)}</p>{certifications.slice(0, 3).map((item) => <div className="compact-entry" key={item.credentialId}><strong>{t(item.title)}</strong><span>{item.provider}, {item.date}</span></div>)}<button type="button" className="project-card-action" onClick={() => setIsCertModalOpen(true)}>{t(copy.viewAllCerts)} ({certifications.length}) →</button></section>
+          <aside className="profile-sidebar">
+            <section className="reveal-item"><p className="side-label">{t(copy.location)}</p><p>{t(profile.location)}</p></section>
+            <section className="reveal-item"><p className="side-label">{t(copy.skills)}</p>{skills.map((skill) => <div className="compact-entry" key={skill.title.id}><strong>{t(skill.title)}</strong><span>{t(skill.description)}</span></div>)}</section>
+            <section className="reveal-item"><p className="side-label">{t(copy.spokenLanguages)}</p><ul className="skill-list">{spokenLanguages.map((item) => <li key={item.id}>{t(item)}</li>)}</ul></section>
+            <section className="reveal-item"><p className="side-label">{t(copy.education)}</p>{education.map((item) => <div className="compact-entry" key={item.institution}><strong>{t(item.degree)}</strong><span>{item.institution}</span><span>{displayDate(item.date, language)}</span><span>{t(item.gpa)}</span></div>)}</section>
+            <section className="reveal-item"><p className="side-label">{t(copy.navCertifications)}</p>{certifications.slice(0, 3).map((item) => <div className="compact-entry" key={item.credentialId}><strong>{t(item.title)}</strong><span>{item.provider}, {item.date}</span></div>)}<button type="button" className="project-card-action" onClick={() => setIsCertModalOpen(true)}>{t(copy.viewAllCerts)} ({certifications.length}) →</button></section>
           </aside>
 
           <div className="main-content">
-            <section id="experience" className="content-section reveal">
+            <section id="experience" className="content-section">
               <SectionTitle eyebrow={t(copy.careerEyebrow)} title={t(copy.careerTitle)} />
               <div className="timeline">{journey.map((job) => <TimelineItem item={job} language={language} tagsLabel={t(copy.skills)} key={job.date} />)}</div>
 
@@ -351,8 +360,8 @@ export default function Home() {
             </section>
 
             {/* Financial Simulator & Tax Calculator Interactive Demo Section */}
-            <section id="demo" className="content-section reveal">
-              <div className="tax-demo-banner">
+            <section id="demo" className="content-section">
+              <div className="tax-demo-banner reveal-item">
                 <div className="tax-banner-header">
                   <span className="modal-badge">{t(copy.taxDemoEyebrow)}</span>
                   <h3>{t(copy.taxDemoTitle)}</h3>
@@ -375,11 +384,11 @@ export default function Home() {
               </div>
             </section>
 
-            <section id="work" className="content-section reveal">
+            <section id="work" className="content-section">
               <SectionTitle eyebrow={t(copy.projectEyebrow)} title={t(copy.projectTitle)} />
 
               {/* Category Filter Tabs */}
-              <div className="project-filter-tabs" role="tablist" aria-label="Filter Proyek">
+              <div className="project-filter-tabs reveal-item" role="tablist" aria-label="Filter Proyek">
                 <button
                   type="button"
                   className={`filter-btn${selectedCategory === 'all' ? ' active' : ''}`}
@@ -412,7 +421,7 @@ export default function Home() {
 
               <div className="project-list">
                 {filteredProjects.map((project) => (
-                  <article className="project-item" key={t(project.title)}>
+                  <article className="project-item reveal-item" key={project.id}>
                     <div className="project-heading">
                       <p>{t(project.category)}</p>
                       <strong>{t(project.metric)}</strong>
@@ -440,9 +449,9 @@ export default function Home() {
               </div>
             </section>
 
-            <section id="certifications" className="content-section reveal">
+            <section id="certifications" className="content-section">
               <SectionTitle eyebrow={t(copy.certEyebrow)} title={t(copy.certTitle)} />
-              <div className="tax-demo-banner">
+              <div className="tax-demo-banner reveal-item">
                 <div className="tax-banner-header">
                   <span className="modal-badge">{t(copy.certBadge)}</span>
                   <h3>{t(copy.certBannerTitle)}</h3>
@@ -464,7 +473,7 @@ export default function Home() {
               </div>
             </section>
 
-            <section id="contact" className="contact-section reveal">
+            <section id="contact" className="contact-section reveal-item">
               <p>{t(copy.contactLead)}</p>
               <div className="contact-links-grid">
                 <a href={`mailto:${profile.email}`} className="social-pill-btn">

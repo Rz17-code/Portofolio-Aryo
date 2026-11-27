@@ -287,7 +287,11 @@ a:hover {
 /* Intro Section Animations */
 .intro {
   padding: 104px 0 88px;
+}
+
+.hero-main {
   max-width: 790px;
+  min-width: 0;
 }
 
 .availability, .section-title > p, .side-label, .period, .project-heading p {
@@ -752,19 +756,6 @@ footer {
   padding: 24px 0 36px;
 }
 
-/* Scroll-triggered reveal animations */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* Floating Toast Notification */
 .toast-container {
   position: fixed;
@@ -1048,6 +1039,7 @@ footer {
   color: var(--accent);
   line-height: 1.2;
   margin-bottom: 6px;
+  white-space: nowrap;
 }
 
 .stat-label {
@@ -1480,7 +1472,7 @@ footer {
   .header-controls .cv-btn { padding: 0 10px; height: 32px; }
   .cv-label-full { display: none; }
   .cv-label-short { display: inline; }
-  .stat-value { font-size: clamp(18px, 5.6vw, 26px); white-space: nowrap; }
+  .stat-value { font-size: clamp(18px, 5.6vw, 26px); }
   .project-heading { flex-wrap: wrap; gap: 8px; }
   .project-heading strong { white-space: normal; }
 }
@@ -2307,7 +2299,295 @@ body.dark-theme .open-tax-modal-btn {
   box-shadow: var(--card-shadow-hover);
 }
 
+/* ===================== Animasi ===================== */
+/* Memakai properti translate/scale/rotate agar tidak menimpa transform milik efek hover. */
 
+@keyframes rise-in {
+  from { opacity: 0; translate: 0 22px; }
+  to { opacity: 1; translate: 0 0; }
+}
 
+/* 1. Bagian atas muncul berurutan saat halaman dibuka */
+.hero-main > :not(.stats-bar-container),
+.hero-main .stat-card,
+.ap-flow {
+  animation: rise-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
 
+.hero-main .availability { animation-delay: 0.05s; }
+.hero-main h1 { animation-delay: 0.14s; }
+.hero-main .role { animation-delay: 0.23s; }
+.hero-main .summary { animation-delay: 0.32s; }
+.hero-main .intro-links { animation-delay: 0.41s; }
+.hero-main .stat-card:nth-child(1) { animation-delay: 0.5s; }
+.hero-main .stat-card:nth-child(2) { animation-delay: 0.6s; }
+.hero-main .stat-card:nth-child(3) { animation-delay: 0.7s; }
+.hero-main .stat-card:nth-child(4) { animation-delay: 0.8s; }
+.ap-flow { animation-delay: 0.45s; }
 
+/* 2. Kartu muncul satu per satu saat di-scroll */
+.reveal-item { opacity: 0; }
+.reveal-item.is-visible { animation: rise-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* Garis aksen di kartu pengalaman tumbuh dari atas */
+.timeline-item { position: relative; }
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 22px;
+  bottom: 22px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--accent);
+  scale: 1 0;
+  transform-origin: top;
+  transition: scale 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
+}
+.timeline-item.is-visible::before { scale: 1 1; }
+
+/* Garis aksen di bawah judul bagian */
+.section-title { position: relative; }
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 64px;
+  height: 2px;
+  background: var(--accent);
+  scale: 0 1;
+  transform-origin: left;
+  transition: scale 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+.section-title.is-visible::after { scale: 1 1; }
+
+/* 3. Animasi alur Account Payable */
+.ap-flow {
+  max-width: 420px;
+  margin-bottom: 8px;
+  padding: 22px;
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow-hover);
+  backdrop-filter: blur(8px);
+}
+
+@media (min-width: 1200px) {
+  .intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    column-gap: 48px;
+    align-items: center;
+  }
+  .ap-flow { max-width: none; margin-bottom: 0; }
+}
+
+.ap-flow-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ap-flow-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.ap-flow-status {
+  padding: 2px 10px;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.ap-flow-status.is-done {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-glow);
+}
+
+.ap-flow-progress {
+  height: 3px;
+  margin: 14px 0 12px;
+  overflow: hidden;
+  background: var(--line);
+  border-radius: 3px;
+}
+
+.ap-flow-progress span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ap-flow-steps,
+.ap-flow-facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ap-step {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.35s ease;
+}
+
+.ap-step.is-active { background: var(--accent-glow); }
+
+/* Garis penghubung antar langkah: abu-abu, lalu terisi saat langkah selesai */
+.ap-step:not(:last-child)::before,
+.ap-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top: 38px;
+  bottom: -8px;
+  width: 2px;
+  background: var(--line);
+}
+
+.ap-step:not(:last-child)::after {
+  background: var(--accent);
+  scale: 1 0;
+  transform-origin: top;
+  transition: scale 0.5s ease;
+}
+
+.ap-step.is-done:not(:last-child)::after { scale: 1 1; }
+
+.ap-step-marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  flex: 0 0 26px;
+  height: 26px;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 50%;
+  transition: color 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
+}
+
+.ap-step.is-active .ap-step-marker {
+  color: var(--accent);
+  border-color: var(--accent);
+  animation: ap-pulse 1.4s ease-out infinite;
+}
+
+.ap-step.is-done .ap-step-marker {
+  color: var(--paper);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.ap-step-marker svg { animation: ap-check 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+.ap-step-text {
+  display: grid;
+  line-height: 1.4;
+  transition: opacity 0.35s ease;
+}
+
+.ap-step-text strong { font-size: 13.5px; font-weight: 600; }
+.ap-step-text span { color: var(--muted); font-size: 12px; }
+.ap-step.is-waiting .ap-step-text { opacity: 0.55; }
+
+.ap-flow-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.ap-flow-facts li {
+  padding: 3px 8px;
+  color: var(--accent);
+  font-family: 'DM Mono', monospace;
+  font-size: 10.5px;
+  background: var(--accent-glow);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+}
+
+@keyframes ap-pulse {
+  from { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent); }
+  to { box-shadow: 0 0 0 10px transparent; }
+}
+
+@keyframes ap-check {
+  from { scale: 0; }
+  to { scale: 1; }
+}
+
+/* 4. Interaksi kecil: kilau tombol utama, ikon unduh, ikon tema */
+.intro-links .primary-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.intro-links .primary-link::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -50%;
+  width: 35%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+}
+
+.intro-links .primary-link:hover::after { animation: shine 0.85s ease; }
+
+@keyframes shine {
+  to { left: 140%; }
+}
+
+.cv-btn:hover svg { animation: nudge-down 0.7s ease; }
+
+@keyframes nudge-down {
+  40% { translate: 0 3px; }
+  70% { translate: 0 -1px; }
+}
+
+.theme-toggle svg { animation: icon-swap 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+@keyframes icon-swap {
+  from { opacity: 0; rotate: -90deg; scale: 0.3; }
+  to { opacity: 1; rotate: 0deg; scale: 1; }
+}
+
+/* 5. Hormati pengaturan "kurangi gerakan" di perangkat pengunjung */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}

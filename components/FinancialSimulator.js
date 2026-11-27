@@ -57,7 +57,7 @@ export default function FinancialSimulator({ language }) {
   };
 
   return (
-    <div className="simulator-wrapper reveal">
+    <div className="simulator-wrapper reveal-item">
       <div className="simulator-header">
         <div>
           <p className="sub-tag">{t('subDemo')}</p>
